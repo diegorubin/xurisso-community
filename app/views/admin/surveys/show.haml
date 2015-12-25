@@ -1,0 +1,26 @@
+- content_for :title, "Detalhes da Enquete - #{@survey.title}"
+
+%h1
+  Detalhes da Enquete - #{@survey.title}
+
+.well
+  = link_to "Enquetes", admin_surveys_path, :class => "btn"
+  = link_to "Editar Enquete", edit_admin_survey_path(@survey), :class => "btn"
+
+%table.table.table-bordered.table-striped
+  %tr
+    %th
+      Usuário
+    %th
+      Opção Escolhida
+    %th
+      Respondido em
+
+  - @survey.survey_answers.each do |answer|
+    %tr
+      %td
+        = link_to(answer.user.identifier, user_path(answer.user.login), :target => "_blank")
+      %td
+        = answer.survey_option.description
+      %td
+        = answer.created_at.to_s(:long)

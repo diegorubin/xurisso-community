@@ -1,0 +1,22 @@
+- content_for(:menu) do
+  = render :partial => "users/menu-show"
+
+- content_for(:page) do
+  - content_for :title, "Foto #{@photo.title}"
+
+  %h1
+    Foto #{@photo.title}
+
+  #photo-wrapper
+    = image_tag @photo.image.album.url
+
+  #photo-infos-wrapper
+    %span.info-attr
+      Publicado em: 
+    #{l @photo.created_at, :format => :long, :locale => "pt-BR"}
+
+  #photo-description-wrapper
+    = raw @photo.description.gsub("\n", "</br>")
+
+= render :partial => "shared/header"
+

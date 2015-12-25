@@ -1,0 +1,10 @@
+#profile-image
+  = image_tag @user.avatar.profile.url
+
+%li.nav-header
+  Menu
+
+%li{:class => site_active("messages", "new")}
+  = link_to "Enviar Mensagem", new_user_message_path(@user.login)
+%li{:class => [site_active("albums", "index"), site_active("photos", "index"), site_active("photos", "show")].join}
+  = link_to "Álbuns", user_albums_path(@user.login)

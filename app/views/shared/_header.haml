@@ -1,0 +1,27 @@
+- if content_for?(:title)
+  %input#window-title{:type => "hidden", :value => yield(:title)}
+
+- if content_for?(:menu)
+  .span3
+    .well.sidebar-nav
+      %ul.nav.nav-list
+        = yield(:menu)
+
+- if content_for?(:menu) && content_for?(:sidebar)
+  - klass = "span6"
+- elsif content_for?(:menu) || content_for?(:sidebar)
+  - klass = "span9"
+- else
+  - klass = "span12"
+
+%div{:class => klass}
+  = render :partial => "shared/alert"
+  = yield(:page)
+
+- if content_for?(:sidebar)
+  .span3
+    .well.sidebar-nav
+      %ul.nav.nav-list
+        = yield(:sidebar)
+
+

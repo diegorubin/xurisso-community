@@ -1,0 +1,24 @@
+- content_for :menu do
+  = render :partial => "users/menu-show"
+
+- content_for(:page) do
+  -content_for :title, "Enviar mensagem"
+
+  %h1
+    Enviar Mensagem
+
+  = form_for([@user,@message]) do |f|
+
+    = f.label :about
+    = f.text_field :about
+    %span#error_title.help-inline= @message.errors.get(:about)
+
+    = f.label :body
+    = f.text_area :body
+    %span#error_title.help-inline= @message.errors.get(:body)
+
+    .clearfix
+      = f.submit "Enviar", :class => "btn btn-primary"
+
+= render :partial => "shared/header"
+

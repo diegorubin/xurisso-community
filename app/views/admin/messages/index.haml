@@ -1,0 +1,39 @@
+- content_for :title, "Lista de Mensagens"
+.page_header
+  %h1
+    Lista de Mensagens
+
+%table.table.table-bordered.table-striped
+  %tr
+    %th
+      De
+    %th
+      Para
+    %th
+      Assunto
+    %th
+      Corpo
+    %th
+      Criado em
+    %th
+      &nbsp;
+      
+  - @messages.each do |m|
+    - next unless m.from
+    - next unless m.to
+    %tr
+      %td
+        = m.from.name || m.from.login
+      %td
+        = m.to.name || m.to.login
+      %td
+        = m.about
+      %td
+        = m.body
+      %td
+        = m.created_at.to_s(:long)
+      %td
+        = link_to "Remover", admin_message_path(m), :method => :delete, :confirm => "Você tem certeza?"
+
+= paginate @messages
+

@@ -1,0 +1,19 @@
+%li{:class => "photo", :id => "photo-#{photo.id}"}
+  .photo-content
+    .photo-moldura
+      = image_tag "thumb_moldura.png", :class => "img-moldura"
+    .photo-image
+      = image_tag photo.thumb.url, :class => "photo-thumb"
+  %p
+    = link_to photo.title, user_album_photos_path(current_user.login, album), :class => "photo-title"
+  %p
+    = link_to "Editar",
+              edit_user_album_photo_path(current_user.login, album, photo),
+              :class => "edit-photo normal-link"
+    |
+    = link_to "Remover", 
+              user_album_photo_path(current_user.login, album, photo),
+              'a-method' => "DELETE",
+              'a-confirm' => "Você tem certeza?",
+              :class => "danger remove-photo normal-link"
+

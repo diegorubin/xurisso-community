@@ -1,0 +1,10 @@
+= form_for([current_user, @album]) do |f|
+
+  = f.label :title
+  = f.text_field :title
+  %span#error_title.help-inline= @album.errors.get(:title)
+
+  = f.label :description
+  = f.text_area :description
+  %span#error_description.help-inline= @album.errors.get(:description)
+

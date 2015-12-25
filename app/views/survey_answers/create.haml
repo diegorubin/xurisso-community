@@ -1,0 +1,13 @@
+.survey-result
+%p
+  Enquete salva com sucesso e você escolheu a opção: 
+  %strong
+    = @survey_answer.survey_option.description
+%p
+  Resultado até agora:
+
+%ul
+  - @survey_answer.survey.result.each do |option, percentage|
+    %li
+      #{percentage}%: #{option.description}
+

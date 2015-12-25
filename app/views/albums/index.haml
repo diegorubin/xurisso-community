@@ -1,0 +1,23 @@
+- content_for(:menu) do
+  = render :partial => "users/menu-show"
+
+- content_for(:page) do
+  - content_for :title, "Álbums de #{@user.identifier}"
+
+  %h1
+    Álbums de #{@user.identifier}
+
+  %ul#albums
+    - @albums.each do |album|
+      %li.album
+        .album-content
+          .album-moldura
+            = image_tag "thumb_moldura.png", :class => "img-moldura"
+          .album-image
+            = image_tag album.cover
+        %p
+          = link_to album.title, user_album_photos_path(@user.login, album), :class => "album-title"
+
+  = paginate @albums
+= render :partial => "shared/header"
+

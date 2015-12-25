@@ -1,0 +1,20 @@
+#editor-toolbar{:style => "display: none;"}
+  %a{'data-wysihtml5-command' => "bold"}
+    Negrito
+  %a{'data-wysihtml5-command' => "italic"}
+    Itálico
+  
+  %a{'data-wysihtml5-command' => "createLink"}
+    Inserir Link
+  %div{'data-wysihtml5-dialog' => "createLink", :style => "display: none;"}
+    %label
+      Link:
+      %input{'data-wysihtml5-dialog-field' => "href", 'value' => "http://", 'class' => "text"}
+        %a{'data-wysihtml5-dialog-action' => "save"}
+          OK
+        %a{'data-wysihtml5-dialog-action' => "cancel"}
+          Cancel
+
+  %a{'data-wysihtml5-action' => "change_view"}
+    Alterar Visualização
+

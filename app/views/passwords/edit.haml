@@ -1,0 +1,24 @@
+- content_for(:menu) do
+  = render :partial => "users/menu-edit"
+
+- content_for(:page) do
+  - content_for :title, "Alterar Senha"
+
+  %h1
+    Alterar Senha
+  
+  = form_for(@user, :as => 'user', :remote => true, :url => password_path(@user), :html => {:method => :put}) do |f|
+  
+    = f.label :password
+    = f.password_field :password
+    %span#error_title.help-inline= @user.errors.get(:password)
+  
+    = f.label :password_confirmation
+    = f.password_field :password_confirmation
+    %span#error_title.help-inline= @user.errors.get(:password_confirmation)
+  
+    .clearfix
+      = f.submit "Salvar", :class => "btn btn-primary"
+
+= render :partial => "shared/header"
+

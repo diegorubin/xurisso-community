@@ -1,0 +1,41 @@
+- content_for :title, "Mensagens do Mural"
+.page_header
+  %h1
+    Lista de Mensagens
+
+%table.table.table-bordered.table-striped
+  %tr
+    %th
+      Autor
+    %th
+      Descrição
+    %th
+      Bloqueado?
+    %th
+      Criado em
+    %th
+      &nbsp;
+      
+  - @wall_messages.each do |m|
+    %tr
+      %td
+        = m.user.name || m.user.login
+      %td
+        = m.description
+      %td
+        - if m.blocked?
+          = "Sim" 
+          = link_to "Desbloquear", admin_wall_message_path(m, 'wall_message[blocked]' => false), 
+                             :method => :put, :confirm => "Você tem certeza?"
+        - else
+          = "Não" 
+          = link_to "Bloquear", admin_wall_message_path(m, 'wall_message[blocked]' => true), 
+                             :method => :put, :confirm => "Você tem certeza?"
+      %td
+        = m.created_at.to_s(:long)
+      %td
+        = link_to "Remover", admin_wall_message_path(m, 'wall_message[removed]' => true), 
+                             :method => :put, :confirm => "Você tem certeza?"
+
+= paginate @wall_messages
+

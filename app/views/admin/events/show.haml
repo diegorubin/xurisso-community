@@ -1,0 +1,26 @@
+- content_for :title, "Evento #{@event.title}"
+
+.page_header
+  %h1
+    Evento #{@event.title}
+
+.well
+  = link_to "Eventos", admin_event_path(@event), :class => 'btn'
+
+%h2
+  Participantes
+
+%table.table.table-bordered.table-striped
+  %tr
+    %th
+      Nome
+    %th
+      Email
+
+  - @event.users.each do |u|
+    %tr
+      %td
+        = u.identifier
+      %td
+        = u.email
+

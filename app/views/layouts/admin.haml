@@ -1,0 +1,54 @@
+%html
+  %head
+    %title= "#{yield :title} - Administração do Grupo Ação Jovem"
+    = csrf_meta_tag 
+
+    /[if lt IE 9]
+      = javascript_include_tag 'http://html5shim.googlecode.com/svn/trunk/html5.js'
+
+    = include_stylesheets :admin, :media => 'all'
+
+  %body
+    .navbar
+      .navbar-inner
+        .container
+          .nav-collapse
+            %ul.nav
+              %li{:class => active("admin/surveys")}
+                = link_to "Enquetes", admin_surveys_path
+              %li{:class => active("admin/events")}
+                = link_to "Eventos", admin_events_path
+              %li{:class => active("admin/wall_messages")}
+                = link_to "Mural", admin_wall_messages_path
+              %li{:class => active("admin/users")}
+                = link_to "Usuários", admin_users_path
+              %li.pull-right
+                = link_to 'Sair',  destroy_user_session_path
+
+    .container-admin
+      .content
+        - if alert
+          %div{:class => "alert alert-error fade in"}
+            %a{:class => "close",
+               "data-dismiss" => "alert",
+               :href => "#"}
+              &times;
+            = alert
+
+        - if notice 
+          %div{:class => "alert alert-success fade in"}
+            %button{:class => "close",
+                    "data-dismiss" => "alert"}
+              x
+            = notice
+
+        = yield
+
+      %footer
+        %p
+          Desenvolvido por #{link_to "Diego Rubin", "http://diegorubin.com"}
+
+  = include_javascripts :admin
+        
+  = yield :javascript 
+

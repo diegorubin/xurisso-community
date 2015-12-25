@@ -1,0 +1,92 @@
+- content_for :sidebar do
+  = render :partial => "sidebar-index"
+
+- content_for(:page) do
+  - content_for :title, "Calendário"
+
+  %h1
+    Calendário
+
+  #calendar
+    #calendar-header
+      %a{:class => "arrow-left-calendar normal-link", :href => "#localload", :title =>"Mês anterior"}
+
+      #month-title-calendar
+        = "#{l(@now, :format => :monthname, :locale => 'pt-BR')} #{@now.year}"
+
+      %a{:class => "arrow-right-calendar normal-link", :href => "#localload", :title => "Próximo mês"}
+      <div class="clear"></div><!--clear-->
+
+    %table#calendar-table.table.table-bordered
+      %tr
+        %th
+          Domingo
+        %th
+          Segunda-feira
+        %th
+          Terça-feira
+        %th
+          Quarta-feira
+        %th
+          Quinta-feira
+        %th
+          Sexta-feira
+        %th
+          Sábado
+
+      %tr
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+
+      %tr
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+
+      %tr
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+
+      %tr
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+
+      %tr
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+
+      %tr
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+
+= render :partial => "shared/header"
+

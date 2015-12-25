@@ -1,0 +1,14 @@
+.wall_message
+  .wall_message-user
+    %p
+      %a{:href => user_path(wall_message.user.login)}
+        = image_tag(wall_message.user.avatar.example.url)
+    %p
+      %a{:href => user_path(wall_message.user.login)}
+        = wall_message.user.identifier
+    %p
+      em #{l wall_message.created_at, :format => :short, :locale => "pt-BR"}
+  .wall_message-description.well
+    = render_wall_message(wall_message.description)
+.clear
+

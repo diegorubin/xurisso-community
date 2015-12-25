@@ -1,0 +1,14 @@
+- content_for :menu do
+  = render :partial => "menu-show"
+
+- content_for(:page) do
+  -content_for :title, @message.about
+
+  %h1
+    = @message.about
+
+  %p
+    = raw @message.body.gsub("\n", "<br/>")
+
+= render :partial => "shared/header"
+

@@ -1,0 +1,22 @@
+%li.survey
+
+  = hidden_field_tag('survey_id', survey.id, :class => "survey_id")
+
+  .survey-title=survey.title
+
+  - if survey.can_answer?(current_user)
+    .survey-description
+      = survey.description
+
+    - survey.survey_options.each do |option|
+      %p
+        = radio_button_tag survey.id, option.id
+        = option.description
+
+    .survey-button
+      = button_tag "Votar", :class => "survey-button-save"
+  - else
+    %p
+      Você já respondeu essa enquete selecionando a opção: 
+      %strong=current_user.answer_of(survey).description
+

@@ -1,0 +1,52 @@
+- content_for :title, "Lista de Usuários"
+.page_header
+  %h1
+    Lista de Usuários
+
+.well
+  = link_to "Adicionar Usuário", new_admin_user_path, {:class => "btn btn-primary"}
+
+%table.table.table-bordered.table-striped
+  %tr
+    %th
+      Login
+    %th
+      E-mail
+    %th
+      Nome
+    %th
+      Último login em
+    %th
+      Criado em
+    %th
+      Bloqueado?
+    %th
+      &nbsp;
+    %th
+      &nbsp;
+    %th
+      &nbsp;
+      
+  - @users.each do |u|
+    %tr
+      %td
+        = u.login
+      %td
+        = u.email
+      %td
+        = u.name
+      %td
+        = u.last_sign_in_at ? u.last_sign_in_at.to_s(:long) : "Nunca entrou"
+      %td
+        = u.created_at.to_s(:long)
+      %td
+        = u.blocked ? "Sim" : "Não"
+      %td
+        = link_to "Visualizar", admin_user_path(u), :class => "blank"
+      %td
+        = link_to "Editar", edit_admin_user_path(u)
+      %td
+        = link_to "Remover", admin_user_path(u), :method => :delete, :confirm => "Você tem certeza?"
+
+= paginate @users
+

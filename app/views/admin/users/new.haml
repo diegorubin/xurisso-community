@@ -1,0 +1,10 @@
+- content_for :title, "Novo Usuário"
+
+%h1
+  Novo Usuário
+
+.well
+  = link_to "Usuários", admin_users_path, :class => "btn"
+
+= render :partial => "form"
+

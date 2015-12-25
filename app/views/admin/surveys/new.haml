@@ -1,0 +1,12 @@
+- content_for :title, "Nova Enquete"
+
+%h1
+  Nova Enquete
+
+.well
+  = link_to "Enquetes", admin_surveys_path, :class => "btn"
+  = link_to "Adicionar Opção", "#", :class => "btn btn-primary", 
+                                    :id => "survey_option-add"
+
+= render :partial => "form"
+

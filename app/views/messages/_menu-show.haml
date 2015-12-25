@@ -1,0 +1,17 @@
+#profile-image
+  = image_tag @user.avatar.profile.url
+
+%li.nav-header
+  = @user.identifier
+
+%li{:class => site_active("messages", "new")}
+  = link_to "Responder Mensagem", 
+            new_user_message_path(@user.login, :resp => "Res: " + @message.about)
+
+%li
+  = link_to "Excluir Mensagem", 
+            user_message_path(current_user.login, @message, :xhr => true), 
+            'a-method' => "DELETE", 
+            'a-confirm' => "Você tem certeza?", 
+            :class => "danger"
+

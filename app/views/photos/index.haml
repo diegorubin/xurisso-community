@@ -1,0 +1,29 @@
+- content_for(:menu) do
+  = render :partial => "users/menu-show"
+
+- content_for(:page) do
+  - content_for :title, "Fotos do álbum #{@album.title}"
+
+  %h1
+    Fotos do álbum #{@album.title}
+
+  #album-description
+    = raw(h(@album.description).gsub("\n","<br/>"))
+
+  %ul#photos
+    - @photos.each do |photo|
+      %a{:href => user_album_photo_path(@user.login, @album, photo)}
+        %li.photo
+          .photo-content
+            .photo-moldura
+              = image_tag "thumb_moldura.png", :class => "img-moldura"
+            .photo-image
+              = image_tag photo.thumb.url, :class => "photo-thumb"
+          %p
+            = photo.title
+
+  = paginate @photos
+
+
+= render :partial => "shared/header"
+

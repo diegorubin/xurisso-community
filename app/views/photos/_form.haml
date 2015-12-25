@@ -1,0 +1,15 @@
+= form_for([current_user, @album, @photo],
+           :html => {:multipart => true}) do |f|
+
+  = f.label :image
+  = f.file_field :image
+  %span#error_image.help-inline= @photo.errors.get(:image)
+
+  = f.label :title
+  = f.text_field :title
+  %span#error_title.help-inline= @photo.errors.get(:title)
+
+  = f.label :description
+  = f.text_area :description
+  %span#error_description.help-inline= @photo.errors.get(:description)
+

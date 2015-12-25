@@ -1,0 +1,21 @@
+default: &default
+  adapter: mysql2
+  pool: 5
+  timeout: 5000
+  username: root
+  password: ""
+  host: 127.0.0.1
+  port: 3306
+
+development:
+  <<: *default
+  database: xurisso_development
+
+test:
+  <<: *default
+  database: xurisso_test
+
+production:
+  <<: *default
+  database: xurisso
+

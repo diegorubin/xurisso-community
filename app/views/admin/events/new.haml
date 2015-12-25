@@ -1,0 +1,10 @@
+- content_for :title, "Novo Evento"
+
+%h1
+  Novo Evento
+
+.well
+  = link_to "Eventos", admin_events_path, :class => "btn"
+
+= render :partial => "form"
+

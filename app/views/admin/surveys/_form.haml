@@ -1,0 +1,32 @@
+= form_for [:admin, @survey] do |f|
+
+  .row-fluid
+    .span8
+      = f.label :title
+      = f.text_field :title
+      %span#error_title.help-inline= @survey.errors.get(:title)
+
+      = f.label :description
+      = f.text_area :description
+      %span#error_title.help-inline= @survey.errors.get(:description)
+
+      .clearfix
+        = f.submit "Salvar", :class => "btn btn-primary"
+
+    .span4
+      %h2
+        Opções
+      #survey_options
+        = f.fields_for :survey_options do |o|
+          = render :partial => "admin/survey_options/form", :locals => {:o => o}
+
+- content_for :javascript do
+  :javascript
+    function newSurveyOption() {
+      var basic = "#{escape_javascript(render :partial => "admin/survey_options/form", :locals => {:o => ActionView::Helpers::FormBuilder.new('__owner__[survey_options_attributes][__index__]',SurveyOption.new, self, {}, proc {})})}";
+      var index = new Date() * 1 + parseInt(Math.random()*100000);
+      while (basic.indexOf("__owner__") != -1) basic = basic.replace("__owner__", "survey");
+      while (basic.indexOf("__index__") != -1) basic = basic.replace("__index__", index);
+      return basic;
+    }   
+

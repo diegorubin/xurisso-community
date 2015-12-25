@@ -1,0 +1,9 @@
+- content_for(:page) do
+  - content_for :title, "Evento: " + @event.title
+
+  %h1
+    Evento: #{@event.title}
+
+  = raw @event.body
+= render :partial => "shared/header"
+

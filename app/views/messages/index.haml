@@ -1,0 +1,32 @@
+- content_for(:page) do
+  - content_for :title, "Minhas Mensagens"
+
+  %h1
+    Minhas Mensagens
+
+  %table.messages
+    - @messages.each do |message|
+      - next unless message.from
+      %tr
+        %td.from
+          %p
+            %a{:href => user_path(message.from.login)}
+              = image_tag message.from.avatar.thumb.url
+          %p
+            %a{:href => user_path(message.from.login)}
+              = message.from.identifier
+        %td
+          %a{:href => user_message_path(current_user.login, message)}
+            = message.about
+        %td
+          = l message.updated_at, :format => :long, :locale => "pt-BR" 
+        %td
+          = link_to "Remover", 
+                    user_message_path(current_user.login, message), 
+                    'a-method' => "DELETE", 
+                    'a-confirm' => "Você tem certeza?", 
+                    :class => "btn btn-danger remove-message normal-link"
+
+  = paginate @messages
+= render :partial => "shared/header"
+

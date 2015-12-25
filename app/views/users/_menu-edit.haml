@@ -1,0 +1,15 @@
+%li.nav-header
+  Menu
+
+%li{:class => site_active("users", "edit")}
+  = link_to "Informações Gerais", edit_user_path(current_user)
+
+%li{:class => site_active("avatars", "edit")}
+  = link_to "Alterar Foto do Perfil", edit_avatar_path(current_user)
+
+%li{:class => site_active("passwords", "edit")}
+  = link_to "Alterar Senha", edit_password_path(current_user)
+
+%li{:class => "#{site_active("albums", "index")} #{site_active("photos", "index")}"}
+  = link_to "Edição de Álbuns", user_albums_path(current_user.login)
+

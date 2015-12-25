@@ -1,0 +1,23 @@
+- content_for :sidebar do
+  = render :partial => "sidebar-index-admin"
+
+- content_for(:menu) do
+  = render :partial => "users/menu-edit"
+
+- content_for(:page) do
+  - content_for :title, "Meus Álbuns"
+
+  %h1
+    Meus Álbuns
+
+  %ul#albums
+    - @albums.each do |album|
+      = render :partial => 'album', :locals => {:album => album,
+                                                :user => current_user}
+
+  = paginate @albums
+
+#new-album-dialog
+#edit-album-dialog
+
+= render :partial => "shared/header"

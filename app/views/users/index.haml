@@ -1,0 +1,22 @@
+- content_for(:menu) do
+  = render :partial => "users/menu-index"
+
+- content_for(:page) do
+  - content_for :title, "Membros"
+  
+  %h1
+    Membros
+
+  %ul#members
+    - @users.each do |user|
+      %li.member.well
+        %p
+          %a{:href => user_path(user.login)}
+            = image_tag(user.avatar.example.url)
+        %p
+          %a{:href => user_path(user.login)}
+            = user.name || user.login
+
+
+= render :partial => "shared/header"
+

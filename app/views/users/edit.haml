@@ -1,0 +1,30 @@
+- content_for(:menu) do
+  = render :partial => "menu-edit"
+
+- content_for(:page) do
+  - content_for :title, "Editar Perfil"
+
+  %h1
+    Editar Perfil
+  
+  = form_for [@user] do |f|
+  
+    = f.label :name
+    = f.text_field :name
+    %span#error_title.help-inline= @user.errors.get(:name)
+  
+    = f.label :email
+    = f.text_field :email
+    %span#error_title.help-inline= @user.errors.get(:email)
+
+    = f.label :birthday_str
+    = f.text_field :birthday_str, :class => "datemask"
+    = f.label :can_display_birthday, :class => "displayinline"
+    = f.check_box :can_display_birthday
+    %span#error_title.help-inline= @user.errors.get(:birthday)
+  
+    .clearfix
+      = f.submit "Salvar", :class => "btn btn-primary"
+
+= render :partial => "shared/header"
+

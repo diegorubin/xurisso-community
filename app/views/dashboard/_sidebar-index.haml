@@ -1,0 +1,28 @@
+- if @events.count > 0
+  %li.nav-header
+    = "Próximos Eventos"
+  
+  - @events.each do |event|
+    %li
+      %i 
+        = "#{event.start_at.day}/#{event.start_at.month}"
+      = ':' 
+      - if event.body.blank?
+        = event.title
+      - else
+        = link_to event.title, event_path(event), :class => "display-inline"
+
+  %li.pull-right.clear
+    = link_to "Veja o calendário", events_path
+
+  .clearfix
+
+- if @surveys.count > 0
+  %li.nav-header
+    = @surveys.count > 1 ? "Enquetes" : "Enquete"
+  
+  - @surveys.each do |survey|
+    = render :partial => "survey", :locals => {:survey => survey}
+
+  .clearfix
+

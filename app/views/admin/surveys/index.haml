@@ -1,0 +1,52 @@
+- content_for :title, "Enquetes"
+.page_header
+  %h1
+    Lista de Enquetes
+
+.well
+  = link_to "Adicionar Enquete", new_admin_survey_path, {:class => "btn btn-primary"}
+
+%table.table.table-bordered.table-striped
+  %tr
+    %th
+      Título
+    %th
+      Descrição
+    %th
+      Ativo?
+    %th
+      Criado em
+    %th
+      &nbsp;
+    %th
+      &nbsp;
+    %th
+      &nbsp;
+      
+  - @surveys.each do |s|
+    %tr
+      %td
+        = s.title
+      %td
+        = s.description
+      %td
+        - if s.active?
+          = "Sim" 
+          = link_to "Desativar", admin_survey_path(s, 'survey[active]' => false), 
+                             :method => :put, :confirm => "Você tem certeza?"
+        - else
+          = "Não" 
+          = link_to "Ativar", admin_survey_path(s, 'survey[active]' => true), 
+                             :method => :put, :confirm => "Você tem certeza?"
+      %td
+        = s.created_at.to_s(:long)
+      %td
+        = link_to "Ver detalhes", admin_survey_path(s)
+      %td
+        = link_to "Editar", edit_admin_survey_path(s)
+      %td
+        = link_to "Remover", admin_survey_path(s), 
+                             :method => :delete, :confirm => "Você tem certeza?"
+
+= paginate @surveys
+

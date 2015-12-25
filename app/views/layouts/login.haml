@@ -1,0 +1,46 @@
+%html
+  %head
+    %title= "#{yield :title} - Grupo Ação Jovem"
+    = csrf_meta_tag 
+
+    /[if lt IE 9]
+      = javascript_include_tag 'http://html5shim.googlecode.com/svn/trunk/html5.js'
+
+    = include_stylesheets :login, :media => 'all'
+
+  %body
+
+    .container-login
+      .content
+
+        .row-fluid
+          .span8
+            - if alert
+              %div{:class => "alert alert-error fade in"}
+                %a{:class => "close",
+                   "data-dismiss" => "alert",
+                   :href => "#"}
+                  &times;
+                = alert
+
+            - if notice 
+              %div{:class => "alert success fade in"}
+                %button{:class => "close",
+                        "data-dismiss" => "alert"}
+                  x
+                = notice
+
+            #presentation
+              %iframe#presentation-frame{:src => presentation_url}
+          .span4
+            #login-form.well
+              = yield
+
+      %footer
+        %p
+          Desenvolvido por #{link_to "Diego Rubin", "http://diegorubin.com"}
+
+  = include_javascripts :login
+        
+  = yield :javascript 
+

@@ -1,0 +1,31 @@
+- content_for :menu do
+  = render :partial => "users/menu-edit"
+
+- content_for(:page) do
+  - content_for :title, "Alterar Foto"
+
+
+  %h1
+    Alterar Foto
+  
+  .avatar-example
+    = image_tag @user.avatar.example.url, :id => "avatar_view"
+  
+  = form_for(@user, :as => 'user', :url => avatar_path(@user), :html => {:method => :put, :multipart => true}) do |f|
+  
+    = f.label :avatar
+    = f.file_field :avatar
+    %span#error_title.help-inline= @user.errors.get(:avatar)
+  
+    .clearfix
+      = f.submit "Enviar", :class => "btn btn-primary"
+  
+  <div id='webcam'></div>
+  
+  %input{:type => "button", 
+         :value => "Tire uma foto", 
+         :class => "btn btn-primary",
+         :onclick => "webcam.snap();"}
+  
+= render :partial => "shared/header"
+

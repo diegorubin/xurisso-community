@@ -1,0 +1,19 @@
+- content_for :sidebar do
+  = render :partial => "sidebar-index"
+
+- content_for(:page) do
+  - content_for :title, "Home"
+
+  %h1
+    Mural
+
+  %p
+    = link_to "Adicionar Recado", new_wall_message_path,
+              :class => "btn btn-primary normal-link",
+              :id => "wall_message-new"
+  #mural
+
+#new-wall_message-dialog
+
+= render :partial => "shared/header"
+

@@ -1,0 +1,50 @@
+= form_for [:admin, @user] do |f|
+
+  = f.label :name
+  = f.text_field :name
+  %span#error_title.help-inline= @user.errors.get(:name)
+
+  = f.label :email
+  = f.text_field :email
+  %span#error_title.help-inline= @user.errors.get(:email)
+
+  - if @user.new_record?
+    = f.label :login
+    = f.text_field :login
+    %span#error_title.help-inline= @user.errors.get(:login)
+
+    = f.label :password
+    = f.password_field :password
+    %span#error_title.help-inline= @user.errors.get(:password)
+
+    = f.label :password_confirmation
+    = f.password_field :password_confirmation
+    %span#error_title.help-inline= @user.errors.get(:password_confirmation)
+
+  = f.label :admin
+  = f.check_box :admin
+  %span#error_title.help-inline= @user.errors.get(:admin)
+
+  = f.label :blocked
+  = f.check_box :blocked
+  %span#error_title.help-inline= @user.errors.get(:blocked)
+
+  .clearfix
+    = f.submit "Salvar", :class => "btn btn-primary"
+
+- unless @user.new_record?
+  %h2
+    Alterar Senha
+
+  = form_for [:admin, @user] do |f|
+    = f.label :password
+    = f.password_field :password
+    %span#error_title.help-inline= @user.errors.get(:password)
+
+    = f.label :password_confirmation
+    = f.password_field :password_confirmation
+    %span#error_title.help-inline= @user.errors.get(:password_confirmation)
+
+    .clearfix
+      = f.submit "Atualizar Senha", :class => "btn btn-primary"
+

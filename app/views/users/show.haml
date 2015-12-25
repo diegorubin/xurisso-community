@@ -1,0 +1,22 @@
+- content_for(:menu) do
+  = render :partial => "menu-show"
+
+- content_for(:page) do
+  - content_for :title, @user.identifier
+
+  %h1
+    = @user.identifier
+
+  - events = @user.events.after(Time.now)
+  - if events.count > 0
+    %dl
+      %dt
+        Eventos
+      %dl
+        - events.each do |event|
+          %p
+            = event.title
+
+
+= render :partial => "shared/header"
+

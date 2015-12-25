@@ -1,0 +1,6 @@
+%li.nav-header
+  = "Editar Álbum"
+%li
+  = link_to "Adicionar Foto", new_user_album_photo_path(@user, @album), 
+            :class => "btn btn-primary normal-link",
+            :id => "photo-new"
