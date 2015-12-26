@@ -1,14 +1,7 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe Admin::WallMessagesController do
-  before(:each) do
-    @user = User.new(Factory.attributes_for(:user))
-    @user.admin = true
-    @user.skip_confirmation!
-    @user.save
-    sign_in @user
-
-  end
+describe Admin::WallMessagesController, type: :controller do
+  login_admin
   
   # INDEX
   it "GET /index" do
@@ -19,7 +12,7 @@ describe Admin::WallMessagesController do
   # UPDATE
   context "on update wall message" do
     it "should block a wall message" do
-      @wall_message = Factory(:wall_message, :user => Factory(:user))
+      @wall_message = FactoryGirl(:wall_message, :user => FactoryGirl(:user))
       lambda do
         put :update, :id => @wall_message.id, :wall_message => {:blocked => true}
         response.should be_redirect
@@ -29,7 +22,7 @@ describe Admin::WallMessagesController do
     end
 
     it "should remove a wall message" do
-      @wall_message = Factory(:wall_message, :user => Factory(:user))
+      @wall_message = FactoryGirl(:wall_message, :user => FactoryGirl(:user))
       lambda do
         put :update, :id => @wall_message.id, :wall_message => {:removed => true}
         response.should be_redirect

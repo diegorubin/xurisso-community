@@ -1,4 +1,4 @@
-class Message < ActiveRecord::Base
+class Message < ApplicationRecord
   # relations
   belongs_to :from, :class_name => "User"
   belongs_to :to, :class_name => "User"

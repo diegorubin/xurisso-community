@@ -2,37 +2,37 @@ require 'spec_helper'
 
 describe Survey do
   before(:each) do
-    @survey = Factory(:survey)
+    @survey = FactoryGirl(:survey)
     @options = []
 
     4.times do |i|
-      @options << Factory(:survey_option, :survey => @survey, 
+      @options << FactoryGirl(:survey_option, :survey => @survey, 
                                           :description => "opcao #{i}")
     end
   end
 
   it "should calculate percentages" do
 
-    answer1 = Factory(:survey_answer, :survey_option => @options[1],
+    FactoryGirl(:survey_answer, :survey_option => @options[1],
                                       :survey => @survey,
-                                      :user => Factory(:user))
+                                      :user => FactoryGirl(:user))
 
     result = @survey.result  
     result.should == {
       @options[1] => 100
     }
 
-    answer2 = Factory(:survey_answer, :survey_option => @options[1],
+    FactoryGirl(:survey_answer, :survey_option => @options[1],
                                       :survey => @survey,
-                                      :user => Factory(:user))
+                                      :user => FactoryGirl(:user))
 
-    answer3 = Factory(:survey_answer, :survey_option => @options[1],
+    FactoryGirl(:survey_answer, :survey_option => @options[1],
                                       :survey => @survey,
-                                      :user => Factory(:user))
+                                      :user => FactoryGirl(:user))
 
-    answer4 = Factory(:survey_answer, :survey_option => @options[0],
+    FactoryGirl(:survey_answer, :survey_option => @options[0],
                                       :survey => @survey,
-                                      :user => Factory(:user))
+                                      :user => FactoryGirl(:user))
     @survey.reload
     result = @survey.result  
     result.should == {
@@ -43,10 +43,10 @@ describe Survey do
   end
 
   it "should create only one answer per user" do
-    @user = Factory(:user)
+    @user = FactoryGirl(:user)
 
     @survey.can_answer?(@user).should be_true
-    answer = Factory(:survey_answer, :survey_option => @options[1],
+    FactoryGirl(:survey_answer, :survey_option => @options[1],
                                      :survey => @survey,
                                      :user => @user)
 
@@ -55,7 +55,7 @@ describe Survey do
 
   context "on recover" do
     it "should get only active surveys" do
-      survey = Factory(:survey, :active => true)
+      FactoryGirl(:survey, :active => true)
 
       Survey.actives.count.should == 1
     end

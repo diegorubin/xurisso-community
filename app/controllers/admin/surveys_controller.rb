@@ -12,7 +12,7 @@ class Admin::SurveysController < AdminController
   end
 
   def create
-    @survey = Survey.new(params[:survey])
+    @survey = Survey.new(survey_params)
 
     if @survey.save
       flash[:notice] = "Enquete criada com sucesso."
@@ -30,7 +30,7 @@ class Admin::SurveysController < AdminController
   end
 
   def update
-    if @survey.update_attributes(params[:survey])
+    if @survey.update(survey_params)
       flash[:notice] = "Enquete atualizada com sucesso."
       redirect_to :action => :index
     else
@@ -52,6 +52,11 @@ class Admin::SurveysController < AdminController
   private
   def get_survey
     @survey = Survey.find(params[:id])
+  end
+
+  def survey_params
+    params.require(:survey)
+      .permit(:title, :description, :start_at, :end_at, :active)
   end
 
 end

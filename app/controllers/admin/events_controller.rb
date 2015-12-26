@@ -11,7 +11,7 @@ class Admin::EventsController < AdminController
   end
 
   def create
-    @event = Event.new(params[:event])
+    @event = Event.new(event_params)
     @event.user = current_user
 
     if @event.save
@@ -30,7 +30,7 @@ class Admin::EventsController < AdminController
   end
 
   def update
-    if @event.update_attributes(params[:event])
+    if @event.update(event_params)
       flash[:notice] = "Evento atualizado com sucesso."
       redirect_to :action => :index
     else
@@ -56,7 +56,13 @@ class Admin::EventsController < AdminController
   end
 
   def get_categories
-    @categories = EventCategory.all(:order => "title ASC")
+    @categories = EventCategory.order("title ASC")
+  end
+
+  def event_params
+    params.require(:event)
+      .permit(:title, :description, :start_at, :end_at, :published,
+              :event_category_id, :user_can_participate, :body)
   end
 
 end

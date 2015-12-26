@@ -1,90 +1,78 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe Admin::SurveysController do
-  before(:each) do
-    @user = User.new(Factory.attributes_for(:user))
-    @user.admin = true
-    @user.skip_confirmation!
-    @user.save
-    sign_in @user
-
-    @survey = Factory(:survey)
-
-  end
+describe Admin::SurveysController, type: :controller do
+  login_admin
+  
+  let(:survey) { FactoryGirl.create(:survey) }
   
   # INDEX
   it "GET /index" do
     get :index
-    response.should be_success
+    expect(response).to be_success
   end
 
   # NEW
   it "GET /new" do
     get :new
-    response.should be_success
+    expect(response).to be_success
   end
 
   # CREATE 
   context "on create survey" do
 
-    before(:each) do
-      @survey_attr = Factory.attributes_for(:survey)
-      @survey_attr[:title] = ""
-    end
+    let(:survey_attributes) { FactoryGirl.attributes_for(:survey, title: '') }
 
     it "dont save survey" do
-      lambda do
-        post :create, :survey => @survey_attr
-        response.should be_success
-      end.should change(Survey, :count).by(0)
+      expect {
+        post :create, :survey => survey_attributes
+        expect(response).to be_success
+      }.to change(Survey, :count).by(0)
     end
 
     it "save survey type" do
-      @survey_attr[:title] = "teste do controller"
+      survey_attributes['title'] = "teste do controller"
 
-      lambda do
-        post :create, :survey => @survey_attr 
-        response.should be_redirect
-      end.should change(Survey, :count).by(1)
+      expect {
+        post :create, :survey => survey_attributes
+        expect(response).to be_redirect
+      }.to change(Survey, :count).by(1)
     end
 
   end
 
   # SHOW 
   it "GET /:id" do
-    get :show, :id => @survey.id
-    response.should be_success
+    get :show, id: survey.id
+    expect(response).to be_success
   end
 
   # EDIT 
   it "GET /edit" do
-    get :edit, :id => @survey.id
-    response.should be_success
+    get :edit, id: survey.id
+    expect(response).to be_success
   end
 
   # UPDATE
   context "on update survey" do
-    it "should block a wall message" do
-      @survey = Factory(:survey)
-      lambda do
-        put :update, :id => @survey.id, :survey => {:active => true}
+    it "should block the survey" do
+      survey.update(active: false)
+      expect {
+        patch :update, :id => survey.id, :survey => {:active => true}
         response.should be_redirect
-      end.should change(Survey, :count).by(0)
+      }.to change(Survey, :count).by(0)
 
-      @survey.reload
-      @survey.should be_active
+      survey.reload
+      expect(survey).to be_active
     end
 
   end
 
   # DELETE
   it "DELETE /destroy" do
-    survey = Factory(:survey)
-
     delete :destroy, :id => survey.id
     response.should be_redirect
 
-    Survey.where(:id => survey.id).first.should be_nil
+    expect(Survey.where(:id => survey.id).first).to be_nil
   end
 
 end

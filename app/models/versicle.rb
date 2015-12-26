@@ -1,3 +1,3 @@
-class Versicle < ActiveRecord::Base
+class Versicle < ApplicationRecord
   belongs_to :chapter
 end

@@ -3,7 +3,7 @@ require 'spec_helper'
 describe WallMessage do
   context "on save wall message" do
     before(:each) do
-      @wall_message_attr = Factory.attributes_for(:wall_message)
+      @wall_message_attr = FactoryGirl.attributes_for(:wall_message)
     end
 
     it "should dont save without a owner" do
@@ -15,8 +15,8 @@ describe WallMessage do
 
   context "on recover" do
     before(:each) do
-      @user = Factory(:user)
-      @wall_message = Factory(:wall_message, :user => @user)
+      @user = FactoryGirl(:user)
+      @wall_message = FactoryGirl(:wall_message, :user => @user)
     end
 
     it "should dont list blocked messages" do

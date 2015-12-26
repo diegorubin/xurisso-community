@@ -4,19 +4,19 @@ describe User do
 
   context "on direct messages" do
     before(:each) do
-      @fulano = Factory(:user)
-      @ciclano = Factory(:user)
+      @fulano = FactoryGirl(:user)
+      @ciclano = FactoryGirl(:user)
     end
 
     it "should change messages" do
-      message = Factory(:message, :from => @fulano, :to => @ciclano)
+      message = FactoryGirl(:message, :from => @fulano, :to => @ciclano)
 
       @ciclano.received_messages.first.should == message
       @fulano.sent_messages.first.should == message
     end
 
     it "should remove sent message" do
-      message = Factory(:message, :from => @fulano, :to => @ciclano)
+      message = FactoryGirl(:message, :from => @fulano, :to => @ciclano)
 
       @ciclano.received_messages.first.should == message
       @fulano.sent_messages.first.should == message
@@ -30,7 +30,7 @@ describe User do
     end
 
     it "should remove received message" do
-      message = Factory(:message, :from => @fulano, :to => @ciclano)
+      message = FactoryGirl(:message, :from => @fulano, :to => @ciclano)
 
       @ciclano.received_messages.first.should == message
       @fulano.sent_messages.first.should == message
@@ -47,20 +47,20 @@ describe User do
 
   context "on survey scope" do
     before(:each) do
-      @current = Factory(:user)
+      @current = FactoryGirl(:user)
 
-      @survey = Factory(:survey)
+      @survey = FactoryGirl(:survey)
       @options = []
 
       4.times do |i|
-        @options << Factory(:survey_option, :survey => @survey, 
+        @options << FactoryGirl(:survey_option, :survey => @survey, 
                                             :description => "opcao #{i}")
       end
 
     end
 
     it "should recover answer of survey" do
-      answer = Factory(:survey_answer, :survey_option => @options[1],
+      FactoryGirl(:survey_answer, :survey_option => @options[1],
                                        :survey => @survey,
                                        :user => @current)
 
@@ -71,3 +71,4 @@ describe User do
   end
 
 end
+

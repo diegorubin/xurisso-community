@@ -1,2 +1,2 @@
-class EventCategory < ActiveRecord::Base
+class EventCategory < ApplicationRecord
 end

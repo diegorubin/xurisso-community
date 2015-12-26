@@ -1,17 +1,21 @@
-class WallMessage < ActiveRecord::Base
-  validates_presence_of :description, :user_id
+class WallMessage < ApplicationRecord
+
+  validates :description, presence: true
+  validates :user, presence: true
 
   belongs_to :user
 
-  default_scope :conditions => {
-                  :removed => false, 
-                  'users.removed' => false,
-                  'users.blocked' => false
-                },
-                :include => :user,
-                :order => "wall_messages.created_at DESC"
-
-  scope :not_blocked, lambda {
-    {:conditions => {:blocked => false}}
+  default_scope -> {
+    where(:removed => false)
+      .where('users.removed' => false, 'users.blocked' => false)
+      .includes(:user)
+      .order('wall_messages.created_at DESC')
   }
+
+  scope :not_blocked, -> { where(blocked: false) }
+  scope :list, -> (offset, limit) {
+    not_blocked.offset(offset).limit(limit)
+  }
+
 end
+

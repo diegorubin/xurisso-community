@@ -30,7 +30,10 @@ gem 'cells'
 group :development, :test do
   gem 'capistrano-rails'
   gem 'byebug'
-  gem 'guard'
+  gem 'guard-rails', require: false
+  gem 'guard-rspec', require: false
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
 end
 
 group :development do

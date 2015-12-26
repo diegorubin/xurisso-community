@@ -1,19 +1,12 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe Admin::MessagesController do
-  before(:each) do
-    @user = User.new(Factory.attributes_for(:user))
-    @user.admin = true
-    @user.skip_confirmation!
-    @user.save
-    sign_in @user
-
-  end
+describe Admin::MessagesController, type: :controller do
+  login_admin
   
   # INDEX
   it "GET /index" do
     get :index
-    response.should be_success
+    expect(response).to be_success
   end
 
 end

@@ -1,4 +1,4 @@
-class Event < ActiveRecord::Base
+class Event < ApplicationRecord
   attr_accessor :current_user_participating
 
   belongs_to :user

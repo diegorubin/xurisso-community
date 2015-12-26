@@ -1,4 +1,4 @@
-class Book < ActiveRecord::Base
+class Book < ApplicationRecord
   belongs_to :testament
   has_many :chapters
 

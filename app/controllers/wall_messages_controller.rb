@@ -1,9 +1,7 @@
 class WallMessagesController < ApplicationController
 
   def index
-    @wall_messages = WallMessage.not_blocked.
-                                 offset(params.fetch(:offset,0).to_i).
-                                 limit(10)
+    @wall_messages = WallMessage.list(params.fetch(:offset,0), 10)
   end
 
   def new
@@ -11,7 +9,7 @@ class WallMessagesController < ApplicationController
   end
 
   def create 
-    @wall_message = WallMessage.new(params[:wall_message])
+    @wall_message = WallMessage.new(wall_message_params)
     @wall_message.user = current_user
     if @wall_message.save
       render :partial => 'wall_message', 
@@ -20,6 +18,11 @@ class WallMessagesController < ApplicationController
     else
       render :json => {:status => 'error', :errors => @wall_message.errors}
     end
+  end
+
+  private
+  def wall_message_params
+    params.require(:wall_message).permit(:description)
   end
 
 end

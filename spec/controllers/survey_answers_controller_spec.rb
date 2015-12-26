@@ -1,20 +1,14 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe SurveyAnswersController do
-  before(:each) do
-    @user = User.new(Factory.attributes_for(:user))
-    @user.admin = true
-    @user.skip_confirmation!
-    @user.save
-    sign_in @user
-  end
+describe SurveyAnswersController, type: :controller do
+  login_user
 
   # CREATE 
   context "on create survey answer" do
 
     before(:each) do
-      survey = Factory(:survey)
-      @survey_answer_attr = Factory.attributes_for(:survey_answer, :survey_id => survey.id, :survey_option_id => Factory(:survey_option, :survey => survey).id)
+      survey = FactoryGirl(:survey)
+      @survey_answer_attr = FactoryGirl.attributes_for(:survey_answer, :survey_id => survey.id, :survey_option_id => FactoryGirl(:survey_option, :survey => survey).id)
     end
 
     it "dont save survey answer" do

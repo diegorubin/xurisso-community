@@ -1,19 +1,11 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe Admin::UsersController do
-  before(:each) do
-    @user = User.new(Factory.attributes_for(:user))
-    @user.admin = true
-    @user.skip_confirmation!
-    @user.save
-    sign_in @user
+describe Admin::UsersController, type: :controller do
+  login_admin
 
-  end
+  let(:user) {FactoryGirl.create(:user).skip_confirmation!}
   
   it "should redirect to home if user not is admin" do
-    user = User.new(Factory.attributes_for(:user))
-    user.skip_confirmation!
-    user.save
     sign_in user
 
     get :index
@@ -36,7 +28,7 @@ describe Admin::UsersController do
   context "on create user" do
 
     before(:each) do
-      @user_attr = Factory.attributes_for(:user)
+      @user_attr = FactoryGirl.attributes_for(:user)
       @user_attr[:login] = ""
     end
 
@@ -68,7 +60,7 @@ describe Admin::UsersController do
   context "on update user" do
 
     before(:each) do
-      @user = Factory(:user)
+      @user = FactoryGirl(:user)
     end
 
     it "dont save user" do
@@ -88,7 +80,7 @@ describe Admin::UsersController do
 
   # DELETE
   it "DELETE /destroy" do
-    user = Factory(:user)
+    user = FactoryGirl(:user)
 
     delete :destroy, :id => user.id
     response.should be_redirect

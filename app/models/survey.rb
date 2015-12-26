@@ -1,4 +1,4 @@
-class Survey < ActiveRecord::Base
+class Survey < ApplicationRecord
 
   has_many :survey_options
   has_many :survey_answers

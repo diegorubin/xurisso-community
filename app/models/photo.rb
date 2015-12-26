@@ -1,4 +1,4 @@
-class Photo < ActiveRecord::Base
+class Photo < ApplicationRecord
 
   mount_uploader :image, ImageUploader
 
@@ -6,9 +6,9 @@ class Photo < ActiveRecord::Base
   belongs_to :album
 
   has_many :comments, :as => 'commentable'
-  has_many :approved_comments, :as => 'commentable', 
-                               :class_name => 'Comment',
-                               :conditions => ['approved = ?', true]
+  has_many :approved_comments, -> {where(approved: true)},
+                               :as => 'commentable', 
+                               :class_name => 'Comment'
 
   paginates_per 27
 

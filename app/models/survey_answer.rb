@@ -1,4 +1,4 @@
-class SurveyAnswer < ActiveRecord::Base
+class SurveyAnswer < ApplicationRecord
   belongs_to :survey
   belongs_to :survey_option
   belongs_to :user
