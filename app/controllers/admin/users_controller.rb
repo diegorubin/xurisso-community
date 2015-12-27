@@ -10,7 +10,7 @@ class Admin::UsersController < AdminController
   end
 
   def create
-    @user = User.new(params[:user])
+    @user = User.new(user_params)
 
     if @user.save
       flash[:notice] = "Usuário criado com sucesso."
@@ -28,7 +28,7 @@ class Admin::UsersController < AdminController
   end
 
   def update
-    if @user.update_attributes(params[:user])
+    if @user.update(user_params)
       flash[:notice] = "Usuário atualizado com sucesso."
       redirect_to :action => :index
     else
@@ -51,6 +51,12 @@ class Admin::UsersController < AdminController
   private
   def get_user
     @user = User.find(params[:id])
+  end
+
+  def user_params
+    params.require(:user)
+      .permit(:name, :login, :email, :password, :password_confirmation,
+        :admin, :blocked)
   end
 
 end

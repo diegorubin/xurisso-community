@@ -3,88 +3,81 @@ require 'rails_helper'
 describe Admin::UsersController, type: :controller do
   login_admin
 
-  let(:user) {FactoryGirl.create(:user).skip_confirmation!}
+  let(:user) do 
+    user = FactoryGirl.create(:user)
+    user.skip_confirmation!
+    user
+  end
   
   it "should redirect to home if user not is admin" do
     sign_in user
 
     get :index
-    response.should be_redirect
+    expect(response).to be_redirect
   end
 
   # INDEX
   it "GET /index" do
     get :index
-    response.should be_success
+    expect(response).to be_success
   end
 
   # NEW
   it "GET /new" do
     get :new
-    response.should be_success
+    expect(response).to be_success
   end
 
   # CREATE 
   context "on create user" do
 
-    before(:each) do
-      @user_attr = FactoryGirl.attributes_for(:user)
-      @user_attr[:login] = ""
-    end
+    let(:user_attributes) {FactoryGirl.attributes_for(:user, login: '')}
 
     it "dont save user" do
-      lambda do
-        post :create, :user => @user_attr
-        response.should be_success
-      end.should change(User, :count).by(0)
+      expect {
+        post :create, :user => user_attributes
+        expect(response).to be_success
+      }.to change(User, :count).by(0)
     end
 
     it "save user type" do
-      @user_attr[:login] = "teste#{rand(999)}"
+      user_attributes[:login] = "teste#{rand(999)}"
 
-      lambda do
-        post :create, :user => @user_attr 
-        response.should be_redirect
-      end.should change(User, :count).by(1)
+      expect {
+        post :create, :user => user_attributes
+        expect(response).to be_redirect
+      }.to change(User, :count).by(1)
     end
 
   end
 
   # EDIT 
   it "GET /edit" do
-    get :edit, :id => @user.id
-    response.should be_success
+    get :edit, :id => user.id
+    expect(response).to be_success
   end
 
   # UPDATE 
   context "on update user" do
 
-    before(:each) do
-      @user = FactoryGirl(:user)
-    end
-
     it "dont save user" do
-      @user.login = ""
-      put :update, :id => @user.id, :user => @user.attributes
-      response.should be_success
+      user.login = ""
+      patch :update, :id => user.id, :user => user.attributes
+      expect(response).to be_success
     end
 
     it "save user" do
-      @user.login = "nome#{rand(999)}"
-
-      put :update, :id => @user.id, :user => @user.attributes 
-      response.should be_redirect
+      user.login = "nome#{rand(999)}"
+      patch :update, :id => user.id, :user => user.attributes 
+      expect(response).to be_redirect
     end
 
   end
 
   # DELETE
   it "DELETE /destroy" do
-    user = FactoryGirl(:user)
-
     delete :destroy, :id => user.id
     response.should be_redirect
-
     User.where(:id => user.id).first.should be_nil
   end
   
