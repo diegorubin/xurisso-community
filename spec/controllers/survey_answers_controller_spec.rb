@@ -6,24 +6,25 @@ describe SurveyAnswersController, type: :controller do
   # CREATE 
   context "on create survey answer" do
 
-    before(:each) do
-      survey = FactoryGirl(:survey)
-      @survey_answer_attr = FactoryGirl.attributes_for(:survey_answer, :survey_id => survey.id, :survey_option_id => FactoryGirl(:survey_option, :survey => survey).id)
-    end
+    let(:survey) { FactoryGirl.create(:survey) }
+    let(:survey_option) {FactoryGirl.create(:survey_option, :survey => survey)}
+    let(:survey_answer_attributes) {
+      FactoryGirl.attributes_for(:survey_answer, 
+        :survey_id => survey.id, :survey_option_id => survey_option.id)
+    }
 
     it "dont save survey answer" do
-      @survey_answer_attr[:survey_option_id] = ''
+      survey_answer_attributes[:survey_option_id] = ''
 
-      lambda do
-        post :create, :survey_answer => @survey_answer_attr
-      end.should change(SurveyAnswer, :count).by(0)
+      expect {
+        post :create, :survey_answer => survey_answer_attributes
+      }.to change(SurveyAnswer, :count).by(0)
     end
 
     it "save survey answer" do
-
-      lambda do
-        post :create, :survey_answer => @survey_answer_attr 
-      end.should change(SurveyAnswer, :count).by(1)
+      expect {
+        post :create, :survey_answer => survey_answer_attributes
+      }.to change(SurveyAnswer, :count).by(1)
     end
 
   end
