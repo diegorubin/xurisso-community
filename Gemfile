@@ -34,6 +34,7 @@ group :development, :test do
   gem 'guard-rspec', require: false
   gem 'rspec-rails'
   gem 'factory_girl_rails'
+  gem 'coveralls', require: false
 end
 
 group :development do

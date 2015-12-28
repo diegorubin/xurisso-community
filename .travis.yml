@@ -1,0 +1,16 @@
+language: ruby
+rvm:
+  - 2.2
+
+notifications:
+  email:
+    - rubin.diego@gmail.com
+
+services:
+  - mysql
+
+gemfile:
+  - Gemfile
+
+script: RAILS_ENV=test bundle exec rake db:create db:migrate spec
+
