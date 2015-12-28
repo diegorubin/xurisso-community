@@ -12,14 +12,13 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require_tree .
 
 var method = "GET";
 $(document).ready(function() {
   $(".alert").alert();
 
-  $("a").live('click', function(event) {
+  $("body a").on('click', function(event) {
     var link = $(this);
     if(link.hasClass("normal-link")) return true;
 

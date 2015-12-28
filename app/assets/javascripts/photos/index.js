@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-  $("a.remove-photo").live('click', function(event) {
+  $("body a.remove-photo").on('click', function(event) {
     event.stopPropagation();
     event.preventDefault();
 
@@ -20,14 +20,14 @@ $(document).ready(function() {
 
   });
 
-  $("a.edit-photo").live('click', function(event) {
+  $("body a.edit-photo").on('click', function(event) {
     event.stopPropagation();
     event.preventDefault();
 
     form.show_edit_dialog($(this).attr("href"));
   });
 
-  $("#photo-new").live('click', function(e) {
+  $("body #photo-new").on('click', function(e) {
     e.preventDefault();
     form.show_dialog($(this).attr("href"));
   });
@@ -35,9 +35,9 @@ $(document).ready(function() {
 });
 
 function PhotoIndex() {
-  var self = this;
+  var _this = this;
 
-  self.init = function() {
+  _this.init = function() {
     if(!$("#new-photo-dialog").is(':data(dialog)'))
       $("#new-photo-dialog").dialog(
         {
@@ -78,7 +78,7 @@ function PhotoIndex() {
 
   }
 
-  self.show_dialog = function(link) {
+  _this.show_dialog = function(link) {
     $("#new-photo-dialog").html("");
     $.ajax({
       type: "GET",
@@ -87,7 +87,7 @@ function PhotoIndex() {
       success: function(data){
         var f = $(data);
         f.attr("class", "");
-        self.new_form = f.find("form").first();
+        _this.new_form = f.find("form").first();
 
         $("#new-photo-dialog").append(f);
         $("#new-photo-dialog").dialog("open");
@@ -95,7 +95,7 @@ function PhotoIndex() {
     });
   }
 
-  self.show_edit_dialog = function(link) {
+  _this.show_edit_dialog = function(link) {
     $("#edit-photo-dialog").html("");
     $.ajax({
       type: "GET",
@@ -104,7 +104,7 @@ function PhotoIndex() {
       success: function(data){
         var f = $(data);
         f.attr("class", "");
-        self.edit_form = f.find("form").first();
+        _this.edit_form = f.find("form").first();
 
         $("#edit-photo-dialog").append(f);
         $("#edit-photo-dialog").dialog("open");
@@ -112,23 +112,23 @@ function PhotoIndex() {
     });
   }
 
-  self.save = function() {
+  _this.save = function() {
     var data = new FormData();
     var csrf_param = $('meta[name=csrf-param]').attr('content');
     var csrf_token = $('meta[name=csrf-token]').attr('content');
 
     data.append('xhr', true);
-    data.append('photo[title]', self.new_form.find("#photo_title").val());
-    data.append('photo[description]', self.new_form.find("#photo_description").val());
+    data.append('photo[title]', _this.new_form.find("#photo_title").val());
+    data.append('photo[description]', _this.new_form.find("#photo_description").val());
     data.append(csrf_param, csrf_token);
-    jQuery.each(self.new_form.find('#photo_image')[0].files, function(i, file) {
+    jQuery.each(_this.new_form.find('#photo_image')[0].files, function(i, file) {
       data.append('photo[image]', file);
     });
 
     $("#notice-msg").slideDown('fast');
     $.ajax({  
       type: "POST",
-      url: self.new_form.attr("action"),
+      url: _this.new_form.attr("action"),
       data: data,  
       contentType: false,
       processData: false,
@@ -137,7 +137,7 @@ function PhotoIndex() {
         display_message("Foto adicionada com sucesso.", 'success');
         $.ajax({
           type: "GET",
-          url: self.new_form.attr("action") + "/" + data.photo.id,
+          url: _this.new_form.attr("action") + "/" + data.photo.id,
           data: {xhr:true, partial:true},
           success: function(html){
             $("ul#photos").append(html);
@@ -154,23 +154,23 @@ function PhotoIndex() {
     });  
   }
 
-  self.update = function() {
+  _this.update = function() {
     var data = new FormData();
     var csrf_param = $('meta[name=csrf-param]').attr('content');
     var csrf_token = $('meta[name=csrf-token]').attr('content');
 
     data.append('xhr', true);
-    data.append('photo[title]', self.edit_form.find("#photo_title").val());
-    data.append('photo[description]', self.edit_form.find("#photo_description").val());
+    data.append('photo[title]', _this.edit_form.find("#photo_title").val());
+    data.append('photo[description]', _this.edit_form.find("#photo_description").val());
     data.append(csrf_param, csrf_token);
-    jQuery.each(self.edit_form.find('#photo_image')[0].files, function(i, file) {
+    jQuery.each(_this.edit_form.find('#photo_image')[0].files, function(i, file) {
       data.append('photo[image]', file);
     });
 
     $("#notice-msg").slideDown('fast');
     $.ajax({  
       type: "PUT",
-      url: self.edit_form.attr("action"),
+      url: _this.edit_form.attr("action"),
       data: data,  
       contentType: false,
       processData: false,

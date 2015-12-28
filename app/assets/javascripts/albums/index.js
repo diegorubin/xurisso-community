@@ -1,10 +1,10 @@
 $(document).ready(function() {
 
-  $("li.album").live("click", function(e) {
+  $("body li.album").on("click", function(e) {
     window.location.hash =  $(this).find("a").first().attr("href");
   });
 
-  $("a.remove-album").live('click', function(event) {
+  $("body a.remove-album").on('click', function(event) {
     event.stopPropagation();
     event.preventDefault();
 
@@ -22,14 +22,14 @@ $(document).ready(function() {
 
   });
 
-  $("a.edit-album").live('click', function(event) {
+  $("body a.edit-album").on('click', function(event) {
     event.stopPropagation();
     event.preventDefault();
 
     form.show_edit_dialog($(this).attr("href"));
   });
 
-  $("#album-new").live('click', function(e) {
+  $("body #album-new").on('click', function(e) {
     e.preventDefault();
     form.show_dialog($(this).attr("href"));
   });

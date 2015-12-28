@@ -3,7 +3,7 @@
  */
 
 $(document).ready(function() {
-  $(".show-event").live('click', function(event) {
+  $("body .show-event").on('click', function(event) {
     event.preventDefault();
     form.show_event($(this).attr('rel'));
   });
@@ -35,7 +35,7 @@ function EventCalendar() {
       event.preventDefault();
     });
 
-    $('.join-event').live('click', function(event) {
+    $('body .join-event').on('click', function(event) {
       event.preventDefault();
       link = $(this);
       $.ajax({
@@ -50,7 +50,7 @@ function EventCalendar() {
 
     });
 
-    $('.exit-event').live('click', function(event) {
+    $('body .exit-event').on('click', function(event) {
       event.preventDefault();
       link = $(this);
       $.ajax({

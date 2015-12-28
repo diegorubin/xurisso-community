@@ -1,11 +1,11 @@
 $(document).ready(function() {
 
-  $("#wall_message-new").live('click', function(e) {
+  $("body #wall_message-new").on('click', function(e) {
     e.preventDefault();
     form.show_dialog($(this).attr("href"));
   });
 
-  $(".survey-button-save").live('click', function(e) {
+  $("body .survey-button-save").on('click', function(e) {
     e.preventDefault();
 
     var survey = $(this).closest(".survey");

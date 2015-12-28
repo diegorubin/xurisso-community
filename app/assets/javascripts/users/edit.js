@@ -1,32 +1,32 @@
 function UserEditForm() {
-  var self = this;
-  self.form = $('.edit_user');
+  var _this = this;
+  _this.form = $('.edit_user');
 
-  self.init = function() {
+  _this.init = function() {
     $("#user_birthday_str").mask("99/99/9999");
   }
 
-  self.data = function() {
+  _this.data = function() {
 
-    self.name = $('#user_name').val();
-    self.email = $('#user_email').val();
-    self.birthday_str = $('#user_birthday_str').val();
-    self.can_display_birthday = $('#user_can_display_birthday').is(':checked');
+    _this.name = $('#user_name').val();
+    _this.email = $('#user_email').val();
+    _this.birthday_str = $('#user_birthday_str').val();
+    _this.can_display_birthday = $('#user_can_display_birthday').is(':checked');
 
     fields = {'xhr': true,
-              'user[name]': self.name,
-              'user[birthday_str]': self.birthday_str,
-              'user[can_display_birthday]': self.can_display_birthday,
-              'user[email]': self.email};
+              'user[name]': _this.name,
+              'user[birthday_str]': _this.birthday_str,
+              'user[can_display_birthday]': _this.can_display_birthday,
+              'user[email]': _this.email};
     return fields;
   }
 
-  self.form.find("input.btn-primary").click(function(event) {
+  _this.form.find("input.btn-primary").click(function(event) {
     event.preventDefault();
     $.ajax({  
       type: "PUT",  
-      url: self.form.attr('action'),
-      data: self.data(),  
+      url: _this.form.attr('action'),
+      data: _this.data(),  
       success: function() {  
         display_message("Informações atualizadas com sucesso.", 'success');
       },
