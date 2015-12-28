@@ -1,12 +1,12 @@
 %html
   %head
-    %title= "#{yield :title} - Grupo Ação Jovem"
+    %title= "#{yield :title} - Xurisso Community"
     = csrf_meta_tag 
 
     /[if lt IE 9]
       = javascript_include_tag 'http://html5shim.googlecode.com/svn/trunk/html5.js'
 
-    = include_stylesheets :site, :media => 'all'
+    = stylesheet_link_tag :application, media: 'all'
 
   %body
     .navbar.navbar-fixed-top
@@ -39,7 +39,7 @@
         Carregando
  
 
-  = include_javascripts :site
+  = javascript_include_tag :application
         
   = yield :javascript 
 

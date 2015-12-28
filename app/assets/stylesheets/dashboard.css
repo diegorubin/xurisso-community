@@ -1,0 +1,22 @@
+.wall_message-user {
+  float: left;
+  text-align: center;
+}
+
+.wall_message-description {
+  width: 546px;
+  float: left;
+  margin-left: 10px;
+  min-height: 120px;
+}
+
+/* survey */
+.survey {
+  margin: 10px 0;
+}
+
+.survey-button {
+  text-align: center;
+  margin-bottom: 10px;
+}
+

@@ -1,15 +1,100 @@
 /*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
  *= require_tree .
  *= require_self
  */
+
+footer {
+  text-align: center;
+}
+
+body{
+  padding-top: 60px;
+}
+
+.content {
+  min-height: 500px;
+}
+
+.container-login {
+  padding: 10px 0;
+  width: 90%;
+}
+
+.sidebar-nav {
+  padding: 9px 0;
+}
+
+#presentation {
+  text-align: center;
+}
+
+#presentation-frame {
+  height: 400px;
+  width: 640px;
+
+  border: 1px solid #ccc;
+}
+
+a.danger {
+  color: red;
+}
+
+/* pagination */
+.pagination > span.first > a {
+  border-width: 1px;
+}
+
+.pagination > .current {
+  float: left;
+  border-right: 1px solid rgba(0, 0, 0, 0.15);
+  line-height: 34px;
+  padding: 0 14px;
+}
+
+.pagination > .gap {
+  float: left;
+  border-right: 1px solid rgba(0, 0, 0, 0.15);
+  line-height: 34px;
+  padding: 0 14px;
+}
+
+.datemask{
+  width: 80px;
+}
+
+.displayinline {
+  display: inline;
+}
+
+/* login */
+#login-form {
+  width: 300px;
+}
+
+#login-remember {
+  display: inline !important;
+}
+
+#login-remember label{
+  display: inline !important;
+}
+
+/* notice message */
+#notice-msg {
+  display: none;
+  width: 112px; 
+  background: #002776; 
+  position: absolute; 
+  top: 0; 
+  left: 50%; 
+  margin-left: -75px;
+  z-index: 2000; 
+  box-shadow: 2px 2px 5px #333;
+}
+
+#notice-msg p {
+  font: bold 14px arial, 
+  sans-serif; color: #fff; 
+  padding: 2px 5px 0px 15px; 
+}
+

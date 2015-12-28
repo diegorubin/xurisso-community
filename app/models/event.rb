@@ -9,8 +9,8 @@ class Event < ApplicationRecord
 
   validates_presence_of :title
 
-  scope :after, lambda {|date|
-    {:conditions => ["start_at >= ?", date]}
+  scope :after, -> (date) {
+    where(["start_at >= ?", date])
   }
 
   def as_json(*args)

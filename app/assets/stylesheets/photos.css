@@ -1,0 +1,42 @@
+ul#photos {
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+ul#photos li {
+  cursor: pointer;
+  text-align: center;
+  float: left;
+  width: 33%;
+}
+
+.photo-moldura {
+  position: relative;
+  top: 0px;
+  z-index: 100;
+}
+
+.photo-image {
+  position: relative;
+  top: -100px;
+  z-index: 50;
+}
+
+.photo-content {
+  height: 100px;
+}
+
+#photo-wrapper {
+  margin: 50px;
+  text-align: center;
+}
+
+#photo-infos-wrapper {
+  margin: 15px;
+}
+
+#photo-infos-wrapper span.info-attr {
+  font-weight: bold;
+}
+

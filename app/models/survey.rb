@@ -8,8 +8,8 @@ class Survey < ApplicationRecord
   validates_presence_of :title 
 
   # Scopes
-  scope :actives, lambda {
-    {:conditions => {:active => true}}
+  scope :actives, -> {
+    where(active: true)
   }
 
   def result

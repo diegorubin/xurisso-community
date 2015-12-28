@@ -13,6 +13,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'memcache-client'
 gem 'redis'
 gem 'rmagick'
+gem 'turbolinks'
 
 #file upload
 gem 'carrierwave'

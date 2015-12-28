@@ -1,0 +1,38 @@
+.avatar-example {
+  float: left;
+  padding: 20px;
+}
+
+#profile-image {
+  text-align: center;
+}
+
+/* create message */
+#message_body {
+  width: 90%;
+  height: 150px;
+}
+
+/* list of users */
+#members {
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+}
+
+#members li {
+  text-align: center;
+  float: left;
+  display: block;
+  margin: 0px 12px 12px 0px;
+}
+
+/* messages */
+table.messages {
+  width: 100%;
+}
+
+table.messages td.from {
+  text-align: center;
+}
+

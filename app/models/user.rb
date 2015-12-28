@@ -8,8 +8,8 @@ class User < ApplicationRecord
   mount_uploader :avatar, AvatarUploader
 
   #validates
-  validates_format_of :login, :with => /\A[a-zA-Z0-9]{4,40}\z/
-  validates_uniqueness_of :email, :login
+  validates :login, format: {with: /[a-zA-Z0-9]{4,40}/}, uniqueness: true
+  validates :email, uniqueness: true
 
   # Relations
   has_many :albums

@@ -1,0 +1,29 @@
+ul#albums {
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+ul#albums li {
+  cursor: pointer;
+  text-align: center;
+  float: left;
+  width: 33%;
+}
+
+.album-moldura {
+  position: relative;
+  top: 0px;
+  z-index: 100;
+}
+
+.album-image {
+  position: relative;
+  top: -100px;
+  z-index: 50;
+}
+
+.album-content {
+  height: 100px;
+}
+
