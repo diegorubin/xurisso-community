@@ -19,7 +19,7 @@ gem 'turbolinks'
 gem 'carrierwave'
 
 #pagination
-gem 'kaminari',        '0.12.4'
+gem 'kaminari'
 
 #session
 gem 'devise', :git => 'https://github.com/plataformatec/devise.git'

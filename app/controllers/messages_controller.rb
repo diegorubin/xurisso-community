@@ -2,9 +2,8 @@ class MessagesController < ApplicationController
   before_filter :get_user, :except => [:index, :show]
 
   def index
-    @messages = Message.for_user(current_user).
-                        order("updated_at DESC").
-                        page(params[:page])
+    @messages = Message.for_user(current_user)
+      .order("updated_at DESC").page(params[:page])
   end
 
   def new

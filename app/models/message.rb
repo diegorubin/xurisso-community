@@ -6,8 +6,8 @@ class Message < ApplicationRecord
   # validates
   validates_presence_of :about, :body, :from, :to
 
-  scope :for_user, lambda {|user|
-    {:conditions => ["removed_by_to = ? and to_id = ?", false, user.id]}
+  scope :for_user, -> (user) {
+    where(["removed_by_to = ? and to_id = ?", false, user.id])
   }
 
   # pagination
