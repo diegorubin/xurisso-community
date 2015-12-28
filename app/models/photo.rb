@@ -7,8 +7,7 @@ class Photo < ApplicationRecord
 
   has_many :comments, :as => 'commentable'
   has_many :approved_comments, -> {where(approved: true)},
-                               :as => 'commentable', 
-                               :class_name => 'Comment'
+    :as => 'commentable', :class_name => 'Comment'
 
   paginates_per 27
 

@@ -3,7 +3,7 @@ require 'rails_helper'
 describe Admin::SurveysController, type: :controller do
   login_admin
   
-  let(:survey) { FactoryGirl.create(:survey) }
+  let(:survey) { create(:survey) }
   
   # INDEX
   it "GET /index" do
@@ -20,7 +20,7 @@ describe Admin::SurveysController, type: :controller do
   # CREATE 
   context "on create survey" do
 
-    let(:survey_attributes) { FactoryGirl.attributes_for(:survey, title: '') }
+    let(:survey_attributes) { attributes_for(:survey, title: '') }
 
     it "dont save survey" do
       expect {

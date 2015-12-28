@@ -2,29 +2,32 @@ require 'rails_helper'
 
 describe Photo do
   context "on recover comments" do
-    it "should get all comments" do
-      user = FactoryGirl(:user)
-      photo = FactoryGirl(:photo)
       
-      FactoryGirl(:comment, :user => user, :commentable_id => photo.id)
+    let(:user) { create(:user) }
+    let(:photo) { create(:photo) }
+    let(:comment) { 
+      create(:comment, :user => user, :commentable => photo) 
+    }
 
-      photo.comments.count.should == 1
+    let(:comment_approved) {
+      create(:comment, :user => user, 
+        :commentable => photo, :approved => true)
+    }
+
+    let(:comment_not_approved) {
+      create(:comment, :user => user, 
+        :commentable => photo, :approved => false)
+    }
+
+    it "should get all comments" do
+      comment
+      expect(photo.comments.count).to eql 1
     end
 
     it "should get only approved comments" do
-      user = FactoryGirl(:user)
-      photo = FactoryGirl(:photo)
-      
-      comment = FactoryGirl(:comment, :user => user, 
-                        :commentable_id => photo.id,
-                        :approved => true)
-
-      comment = FactoryGirl(:comment, :user => user, 
-                        :commentable_id => photo.id,
-                        :approved => false)
-
-      photo.approved_comments.count.should == 1
-
+      comment_approved
+      comment_not_approved
+      expect(photo.approved_comments.count).to eql 1
     end
 
   end

@@ -10,6 +10,11 @@ FactoryGirl.define do
     factory :admin do
       admin true
     end
+
+    factory :confirmed_user do
+      confirmed_at {Time.now}
+    end
+
   end
 
 end

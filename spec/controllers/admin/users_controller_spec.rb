@@ -4,7 +4,7 @@ describe Admin::UsersController, type: :controller do
   login_admin
 
   let(:user) do 
-    user = FactoryGirl.create(:user)
+    user = create(:user)
     user.skip_confirmation!
     user
   end
@@ -31,7 +31,7 @@ describe Admin::UsersController, type: :controller do
   # CREATE 
   context "on create user" do
 
-    let(:user_attributes) {FactoryGirl.attributes_for(:user, login: '')}
+    let(:user_attributes) {attributes_for(:user, login: '')}
 
     it "dont save user" do
       expect {

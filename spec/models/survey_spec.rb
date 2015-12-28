@@ -1,63 +1,71 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Survey do
-  before(:each) do
-    @survey = FactoryGirl(:survey)
-    @options = []
 
+  let(:survey) { create(:survey) }
+  let!(:options) {
+    options = []
     4.times do |i|
-      @options << FactoryGirl(:survey_option, :survey => @survey, 
-                                          :description => "opcao #{i}")
+      options << create(:survey_option, :survey => survey, 
+        :description => "opcao #{i}")
     end
+    options
+  }
+
+  let!(:survey_answer) {
+    create(:survey_answer, :survey_option => options[1],
+      :survey => survey, :user => user)
+  }
+
+  let(:another_survey_answer) {
+    create(:survey_answer, :survey_option => options[1],
+      :survey => survey, :user => another_user)
+  }
+
+  let(:user) { create(:user) }
+  let(:another_user) { create(:user) }
+
+  let(:answers) do
+    create(:survey_answer, :survey_option => options[1],
+      :survey => survey, :user => create(:user))
+
+    create(:survey_answer, :survey_option => options[1],
+      :survey => survey, :user => create(:user))
+
+    create(:survey_answer, :survey_option => options[0],
+      :survey => survey, :user => create(:user))
   end
 
   it "should calculate percentages" do
+    result = survey.result  
+    expect(result).to eql({
+      options[1] => 100
+    })
 
-    FactoryGirl(:survey_answer, :survey_option => @options[1],
-                                      :survey => @survey,
-                                      :user => FactoryGirl(:user))
+    answers
 
-    result = @survey.result  
-    result.should == {
-      @options[1] => 100
-    }
-
-    FactoryGirl(:survey_answer, :survey_option => @options[1],
-                                      :survey => @survey,
-                                      :user => FactoryGirl(:user))
-
-    FactoryGirl(:survey_answer, :survey_option => @options[1],
-                                      :survey => @survey,
-                                      :user => FactoryGirl(:user))
-
-    FactoryGirl(:survey_answer, :survey_option => @options[0],
-                                      :survey => @survey,
-                                      :user => FactoryGirl(:user))
-    @survey.reload
-    result = @survey.result  
-    result.should == {
-      @options[1] => 75,
-      @options[0] => 25
-    }
-
+    survey.reload
+    result = survey.result  
+    expect(result).to eql({
+      options[1] => 75,
+      options[0] => 25
+    })
   end
 
   it "should create only one answer per user" do
-    @user = FactoryGirl(:user)
-
-    @survey.can_answer?(@user).should be_true
-    FactoryGirl(:survey_answer, :survey_option => @options[1],
-                                     :survey => @survey,
-                                     :user => @user)
-
-    @survey.can_answer?(@user).should_not be_true
+    expect(survey.can_answer?(another_user)).to be_truthy
+    another_survey_answer
+    expect(survey.can_answer?(another_user)).to be_falsey
   end
 
   context "on recover" do
-    it "should get only active surveys" do
-      FactoryGirl(:survey, :active => true)
+    let(:survey) { create(:survey, :active => true) }
 
+    it "should get only active surveys" do
       Survey.actives.count.should == 1
     end
+
   end
+
 end
+

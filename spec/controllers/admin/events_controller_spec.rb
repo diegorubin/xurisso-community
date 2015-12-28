@@ -3,9 +3,9 @@ require 'rails_helper'
 describe Admin::EventsController, type: :controller do
   login_admin
 
-  let(:user) { FactoryGirl(:user) }
-  let(:category) { FactoryGirl(:event_category) }
-  let(:event) { FactoryGirl(:event, category: category, user: user) }
+  let(:user) { create(:user) }
+  let(:category) { create(:event_category) }
+  let(:event) { create(:event, category: category, user: user) }
   
   # INDEX
   it "GET /index" do
@@ -22,8 +22,8 @@ describe Admin::EventsController, type: :controller do
   # CREATE 
   context "on create event" do
 
-    let(:event_category) { FactoryGirl(:event_category) }
-    let(:event_attributes) { FactoryGirl.attributes_for(:event, title: '') }
+    let(:event_category) { create(:event_category) }
+    let(:event_attributes) { attributes_for(:event, title: '') }
 
     it "dont save event" do
       expect {
@@ -46,7 +46,7 @@ describe Admin::EventsController, type: :controller do
 
   # EDIT 
   it "GET /edit" do
-    get :edit, :id => @event.id
+    get :edit, :id => event.id
     expect(response).to be_success
   end
 
