@@ -24,7 +24,6 @@ Rails.application.routes.draw do
   resources :survey_answers, :only => [:create]
   resources :wall_messages, :only => [:index, :new, :create]
 
-  get "/presentation" => "presentation#index", :as => 'presentation'
   root :to => "dashboard#index"
 
   # Serve websocket cable requests in-process

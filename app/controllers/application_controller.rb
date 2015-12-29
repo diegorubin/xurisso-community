@@ -16,7 +16,11 @@ class ApplicationController < ActionController::Base
   end
 
   def set_layout
-    params.fetch('xhr', false) ? false : 'application' 
+    if params.fetch('xhr', false)
+      false
+    else
+      params['controller'] =~ /devise/ ? 'login' : 'application'
+    end
   end
 
 end

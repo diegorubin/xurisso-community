@@ -10,8 +10,8 @@
 
 #calendar-header {width: 240px; margin: 0 auto;}
 #calendar-header #month-title-calendar {font: bold 18px georgia, serif; color: #333; float: left; width: 170px; text-align: center;}
-#calendar-header a.arrow-left-calendar {display: block; width: 16px; height: 16px; background: url(/images/arrow-left-calendar.png) no-repeat; float: left; margin: 4px 15px 0 0;}
-#calendar-header a.arrow-right-calendar {display: block; width: 16px; height: 16px; background: url(/images/arrow-right-calendar.png) no-repeat; float: left; margin: 4px 0 0 15px;}
+#calendar-header a.arrow-left-calendar {display: block; width: 16px; height: 16px; background: url(/assets/arrow-left-calendar.png) no-repeat; float: left; margin: 4px 15px 0 0;}
+#calendar-header a.arrow-right-calendar {display: block; width: 16px; height: 16px; background: url(/assets/arrow-right-calendar.png) no-repeat; float: left; margin: 4px 0 0 15px;}
 
 .outdated {
   background-color: #F0F0F0;

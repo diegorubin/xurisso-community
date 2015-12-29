@@ -1,12 +1,12 @@
 %html
   %head
-    %title= "#{yield :title} - Grupo Ação Jovem"
+    %title= "#{yield :title} - Xurisso Community"
     = csrf_meta_tag 
 
     /[if lt IE 9]
       = javascript_include_tag 'http://html5shim.googlecode.com/svn/trunk/html5.js'
 
-    = include_stylesheets :login, :media => 'all'
+    = stylesheet_link_tag :login, :media => 'all'
 
   %body
 
@@ -30,8 +30,6 @@
                   x
                 = notice
 
-            #presentation
-              %iframe#presentation-frame{:src => presentation_url}
           .span4
             #login-form.well
               = yield
@@ -40,7 +38,5 @@
         %p
           Desenvolvido por #{link_to "Diego Rubin", "http://diegorubin.com"}
 
-  = include_javascripts :login
-        
   = yield :javascript 
 
