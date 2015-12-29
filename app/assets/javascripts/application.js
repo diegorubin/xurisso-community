@@ -36,7 +36,8 @@ var method = "GET";
 $(document).ready(function() {
   $(".alert").alert();
 
-  $("body a").on('click', function(event) {
+  $(document.body).on('click', 'a', function(event) {
+    alert('clicando');
     var link = $(this);
     if(link.hasClass("normal-link")) return true;
 
