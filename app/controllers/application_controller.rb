@@ -16,7 +16,8 @@ class ApplicationController < ActionController::Base
   end
 
   def set_layout
-    return 'application' unless params["xhr"]
+    params.fetch('xhr', false) ? false : 'application' 
   end
 
 end
+

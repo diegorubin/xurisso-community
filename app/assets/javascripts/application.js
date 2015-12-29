@@ -12,7 +12,12 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
+//= require jquery-ui
+//= require bootstrap-alert
+//= require bootstrap-transition
+//
+//= require dashboard/index
+//
 
 var method = "GET";
 $(document).ready(function() {
@@ -65,7 +70,7 @@ function reload_page(anchor) {
 
 function set_title() {
   var title = $("h1").html() || "";
-  top.document.title = title + " - Grupo Ação Jovem";
+  top.document.title = title + " - Xurisso Community";
 }
 
 function display_message(message, st) {

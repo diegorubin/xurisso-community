@@ -55,4 +55,6 @@ Rails.application.configure do
   # config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   config.action_mailer.default_url_options = {host: 'dev.diegorubin.com'}
+
+  config.i18n.default_locale = :'pt-BR'
 end

@@ -44,5 +44,6 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { :host => "test.example.com" }
 
+  config.i18n.default_locale = :'pt-BR'
 end
 

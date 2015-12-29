@@ -1,0 +1,165 @@
+pt-BR:
+
+  activerecord:
+    attributes:
+      album:
+        title: Título
+        description: Descrição
+      event:
+        body: Corpo da Página
+        title: Título
+        event_category_id: Categoria do Evento
+        description: Descrição
+        start_at: Início em
+        end_at: Término em
+        published: "Publicado?"
+        user_can_participate: Usuários podem participar?
+      message:
+        about: Assunto
+        body: Texto
+      photo:
+        title: Título
+        description: Descrição
+        image: Arquivo
+      user:
+        name: Nome
+        email: E-mail
+        birthday: Data de Nascimento
+        birthday_str: Data de Nascimento
+        password: Senha
+        password_confirmation: Confirmação da Senha
+        admin: Administrador
+        blocked: Bloqueado
+        can_display_birthday: "Permito exibí-la"
+      survey_option:
+        description: Descrição
+      survey:
+        title: Título
+        description: Descrição
+
+    errors:
+      models:
+        user:
+          attributes:
+            password:
+              blank: Senha não pode ficar vazio.
+              confirmation: Senha não bate com a confirmação. 
+
+  'true': Sim
+  'false': Não
+
+  date:
+    formats:
+      default: '%d/%m/%Y'
+      short: '%e %b'
+      long: '%B %e, %Y'
+      only_day: '%e'
+      dot_date: '%d.%m.%y %H:%M'
+
+    day_names: [Domingo, Segunda-feira, Terça-feira, Quarta-feira, Quinta-feira, Sexta-feira, Sábado]
+    abbr_day_names: [Dom, Seg, Ter, Qua, Qui, Sex, Sáb]
+    month_names: [~, Janeiro, Fevereiro, Março, Abril, Maio, Junho, Julho, Agosto, Setembro, Outubro, Novembro, Dezembro]
+    abbr_month_names: [~, Jan, Fev, Mar, Abr, Mai, Jun, Jul, Aug, Set, Out, Nov, Dez]
+    order: [ :year, :month, :day ]
+
+  time:
+    formats:
+      default: '%d/%m/%Y %H:%M'
+      default_with_seconds: '%d/%m/%Y %H:%M:%S'
+      time: '%H:%M'
+      time_with_seconds: '%H:%M:%S'
+      short: '%d/%b, %H:%M'
+      long: '%d de %B de %Y, %H:%M'
+      full: '%d de %B de %Y'
+      only_second: '%S'
+      short_date:  '%d/%m/%Y'
+      dot_date:  '%d.%m.%y %H:%M'
+      monthname: "%B"
+
+      datetime:
+        formats:
+          default: '%d/%m/%YT%H:%M:%S%Z'
+
+    am: ''
+    pm: ''
+
+  datetime:
+    formats:
+      long: '%d de %B de %Y, %H:%M'
+
+  errors:
+    messages:
+      expired: "expirou, por favor solicite um novo"
+      not_found: "não encontrado"
+      already_confirmed: "já foi confirmado, por favor tente fazer login"
+      not_locked: "não estava bloqueado"
+      not_saved:
+        one: "1 erro impediu que %{resource} fosse salvo:"
+        other: "%{count} erros impediram que %{resource} fosse salvo:"
+
+  devise:
+    sign_in: Entrar
+    sign_up: Cadastrar
+    failure:
+      already_authenticated: 'Você já está logado.'
+      unauthenticated: 'Você precisa registrar-se ou fazer login para continuar.'
+      unconfirmed: 'Você precisa confirmar a sua conta para continuar.'
+      locked: 'Sua conta está bloqueada.'
+      invalid: 'Senha ou e-mail inválidos.'
+      invalid_token: 'Token de autenticação inválido.'
+      timeout: 'A sua sessão expirou, por favor faça login novamente para continuar.'
+      inactive: 'A sua conta ainda não foi ativada.'
+    sessions:
+      signed_in: 'Login feito com sucesso.'
+      signed_out: 'Logout feito com sucesso.'
+    passwords:
+      send_instructions: 'Dentro de minutos você receberá um e-mail com as instruções de reinicialização de sua senha.'
+      updated: 'Sua senha foi alterada com sucesso. Você está logado.'
+      updated_not_active: 'Sua senha foi alterada com sucesso.'
+      send_paranoid_instructions: "Caso seu e-mail exista em nossa base, você receberá um e-mail com um link para recuperar a sua senha."
+    confirmations:
+      send_instructions: 'Dentro de minutos você receberá um e-mail com instruções para confirmar a sua conta.'
+      send_paranoid_instructions: 'Caso seu e-mail exista em nossa base, dentro de minugos você receberá um e-mail com instruções para confirmar a sua conta.'
+      confirmed: 'Sua conta foi confirmada com sucesso. Você está logado.'
+    registrations:
+      signed_up: 'Bem-vindo! Você registrou-se com sucesso.'
+      inactive_signed_up: 'Você registrou-se com sucesso. No entanto, não pudemos realizar seu login porque sua conta está %{reason}.'
+      updated: 'Você atualizou a sua conta com sucesso.'
+      destroyed: 'Até mais! Sua conta foi cancelada com sucesso. Esperamos vê-lo em breve.'
+      reasons:
+        inactive: 'inativa'
+        unconfirmed: 'não confirmada'
+        locked: 'bloqueada'
+    unlocks:
+      send_instructions: 'Dentro de minutos você receberá um e-mail com instruções para desbloquear a sua conta.'
+      unlocked: 'Sua conta foi desbloqueada com sucesso. Você está logado.'
+      send_paranoid_instructions: 'Caso sua conta exista em nossa base, dentro de minugos você receberá um e-mail com instruções para desbloqueá-la.'
+    omniauth_callbacks:
+      success: 'Autorizado com sucesso pela conta %{kind}.'
+      failure: 'Não foi possível autorizar você no %{kind} porque "%{reason}".'
+    mailer:
+      confirmation_instructions:
+        subject: 'Instruções para confirmação'
+      reset_password_instructions:
+        subject: 'Instruções para reinicialização de senha'
+      unlock_instructions:
+        subject: 'Instruções para desbloqueio'
+
+  #kaminari
+  views:
+    pagination:
+      first: "&laquo; Primeira"
+      last: "Última &raquo;"
+      previous: "&lsaquo; Anterior"
+      next: "Próxima &rsaquo;"
+      truncate: "..."
+  helpers:
+    page_entries_info:
+      one_page:
+        display_entries:
+          zero: "Nenhuma %{entry_name} encontrada"
+          one: "Exibindo <b>1</b> %{entry_name}"
+          other: "Exibindo <b>all %{count}</b> %{entry_name}"
+      more_pages:
+        display_entries: "Exibindo %{entry_name} <b>%{first}&nbsp;-&nbsp;%{last}</b> de <b>%{total}</b> do total"
+
