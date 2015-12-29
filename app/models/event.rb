@@ -13,6 +13,10 @@ class Event < ApplicationRecord
     where(["start_at >= ?", date])
   }
 
+  scope :between, -> (start_at, end_at) {
+    where(["start_at >= ? and end_at <= ?", start_at, end_at])
+  }
+
   def as_json(*args)
     hash = super(*args)
     hash.merge!(

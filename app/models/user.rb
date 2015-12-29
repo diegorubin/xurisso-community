@@ -25,19 +25,20 @@ class User < ApplicationRecord
 
   # Scopes
   default_scope -> {where(removed: false)}
-  scope :find_by_login_or_id, lambda { |login, id|
+  scope :find_by_login_or_id, -> (login, id) {
     where(["login = ? or id = ?", login, id])
   }
 
-  scope :except_user, lambda { |user|
+  scope :except_user, -> (user) {
     where(["id != ?", user.id])
   }
 
-  scope :birthdays_of_period, lambda { |start_at, end_at|
-    where(["((MONTH(users.birthday) = ? AND DAY(users.birthday) >= ?)", start_at.month, start_at.day])
-      .or(["(MONTH(users.birthday) = ?)", start_at.month + 1])
-      .or(["(MONTH(users.birthday) = ? AND DAY(users.birthday) <= ?)) AND can_display_birthday = ?", end_at.month, end_at.day, true])
-  }
+
+  def self.birthdays_of_period(start_at, end_at)
+    User.where("(MONTH(birthday) = ? AND DAY(birthday) >= ?)", start_at.month, start_at.day)
+      .or(User.where("MONTH(birthday) = ?", start_at.month + 1))
+      .or(User.where("(MONTH(birthday) = ? AND DAY(birthday) <= ?) AND can_display_birthday = ?", end_at.month, end_at.day, true))
+  end
 
   # Callbakcks
   before_save :set_birthday

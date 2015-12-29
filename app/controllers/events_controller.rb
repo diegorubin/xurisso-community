@@ -34,7 +34,7 @@ class EventsController < ApplicationController
         end_at = next_month + (41 - calendar[:days].size).days
         calendar[:days] += Range.new(next_month.day, end_at.day).collect{|d| d}
 
-        events = Event.all(:conditions => ["start_at >= ? and end_at <= ?", start_at, end_at])
+        events = Event.between(start_at, end_at)
         calendar[:events] = {}
 
         events.each do |event|

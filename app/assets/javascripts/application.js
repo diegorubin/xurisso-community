@@ -17,6 +17,7 @@
 //= require bootstrap-transition
 //
 //= require dashboard/index
+//= require events/index
 //
 
 var method = "GET";
