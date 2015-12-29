@@ -4,32 +4,32 @@
     .span8
       = f.label :title
       = f.text_field :title
-      %span#error_title.help-inline= @event.errors.get(:title)
+      = show_message_if_error(@event, :title)
 
       = f.label :description
       = f.text_area :description
-      %span#error_title.help-inline= @event.errors.get(:description)
+      = show_message_if_error(@event, :description)
 
       = f.label :event_category_id
       = f.select :event_category_id, @categories.collect{|c| [c.title, c.id]}
-      %span#error_title.help-inline= @event.errors.get(:category_id)
+      = show_message_if_error(@event, :category_id)
 
       = f.label :start_at
       = f.datetime_select :start_at, :order => [:hour, :minute, :day, :month, :year]
-      %span#error_title.help-inline= @event.errors.get(:start_at)
+      = show_message_if_error(@event, :start_at)
 
       = f.label :end_at
       = f.datetime_select :end_at, :order => [:hour, :minute, :day, :month, :year]
-      %span#error_title.help-inline= @event.errors.get(:end_at)
+      = show_message_if_error(@event, :end_at)
 
 
       = f.label :published
       = f.check_box :published
-      %span#error_title.help-inline= @event.errors.get(:published)
+      = show_message_if_error(@event, :published)
 
       = f.label :user_can_participate
       = f.check_box :user_can_participate
-      %span#error_title.help-inline= @event.errors.get(:user_can_participate)
+      = show_message_if_error(@event, :user_can_participate)
 
       .clearfix
         = f.submit "Salvar", :class => "btn btn-primary"
@@ -38,7 +38,7 @@
       = f.label :body
       = render :partial => 'shared/editor_toolbar'
       = f.text_area :body
-      %span#error_title.help-inline= @event.errors.get(:body)
+      = show_message_if_error(@event, :body)
 
 - content_for :javascript do
   :javascript

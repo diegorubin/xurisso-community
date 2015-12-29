@@ -20,6 +20,9 @@
 //= require admin
 //= require webcam
 //
+//= require wysihtml5/wysihtml5-0.3.0.min
+//= require wysihtml5/advanced.js
+//
 //= require admin/surveys
 //= require albums/index
 //= require avatars/edit
@@ -37,7 +40,6 @@ $(document).ready(function() {
   $(".alert").alert();
 
   $(document.body).on('click', 'a', function(event) {
-    alert('clicando');
     var link = $(this);
     if(link.hasClass("normal-link")) return true;
 

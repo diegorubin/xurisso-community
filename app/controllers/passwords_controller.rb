@@ -6,7 +6,7 @@ class PasswordsController < ApplicationController
   end
 
   def update
-    if @user.update_attributes(params[:user])
+    if @user.update(user_params)
 
       if params[:xhr]
         render :json => @user
@@ -18,13 +18,18 @@ class PasswordsController < ApplicationController
     else
 
       if params[:xhr]
-        render :json => @user.errors, :status => 500
+          render :json => @user.errors, :status => 422
       else
         flash[:notice] = "Não foi possível atualizar os dados."
         render :action => :edit
       end
 
     end
+  end
+
+  private
+  def user_params
+    params.require(:user).permit(:password, :password_confirmation)
   end
 
 end

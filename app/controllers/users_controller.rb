@@ -26,7 +26,7 @@ class UsersController < ApplicationController
     else
 
       if params[:xhr]
-        render :json => @user.errors, :status => 500
+        render :json => @user.errors, :status => 422
       else
         flash[:notice] = "Não foi possível atualizar os dados."
         render :action => :edit

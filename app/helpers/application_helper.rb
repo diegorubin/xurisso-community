@@ -39,8 +39,8 @@ module ApplicationHelper
   end
 
   def show_message_if_error(object, field)
-    message = object.errors.messages[field]
-    content_tag :span, message, {class: 'help-inline'} unless message.blank?
+    message = object.errors.messages[field].join(', ')
+    content_tag :span, message, {class: 'help-inline'}
   end
 
 end

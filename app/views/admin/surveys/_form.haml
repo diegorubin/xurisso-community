@@ -4,11 +4,11 @@
     .span8
       = f.label :title
       = f.text_field :title
-      %span#error_title.help-inline= @survey.errors.get(:title)
+      = show_message_if_error(@survey, :title)
 
       = f.label :description
       = f.text_area :description
-      %span#error_title.help-inline= @survey.errors.get(:description)
+      = show_message_if_error(@survey, :description)
 
       .clearfix
         = f.submit "Salvar", :class => "btn btn-primary"

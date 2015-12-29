@@ -5,7 +5,7 @@
   = form_for @wall_message do |f|
   
     = f.text_area :description
-    %span#error_image.help-inline= @wall_message.errors.get(:description)
+    = show_message_if_error(@wall_message, :description)
 
 = render :partial => "shared/header"
 
