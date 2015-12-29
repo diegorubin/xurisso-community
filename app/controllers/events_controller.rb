@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_filter :get_event, :only => [:show]
+  before_action :get_event, :only => [:show]
 
   def index
     respond_to do |format|

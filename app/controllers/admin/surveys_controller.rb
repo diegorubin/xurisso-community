@@ -1,6 +1,6 @@
 class Admin::SurveysController < AdminController
 
-  before_filter :get_survey, :only => [:show, :edit, :update, :destroy]
+  before_action :get_survey, :only => [:show, :edit, :update, :destroy]
 
   def index
     @surveys = Survey.order("active DESC, created_at DESC").

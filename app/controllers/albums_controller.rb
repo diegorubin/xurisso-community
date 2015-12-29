@@ -1,7 +1,7 @@
 class AlbumsController < ApplicationController
-  before_filter :check_if_is_user, :only => [:edit, :update, :destroy]
-  before_filter :get_user, :only => [:index]
-  before_filter :get_album, :only => [:edit, :update, :show, :destroy]
+  before_action :check_if_is_user, :only => [:edit, :update, :destroy]
+  before_action :get_user, :only => [:index]
+  before_action :get_album, :only => [:edit, :update, :show, :destroy]
 
   def index
     @albums = @user.albums.page(params.fetch(:page,1))

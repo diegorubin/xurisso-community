@@ -1,5 +1,5 @@
 class AdminController < ApplicationController
-  before_filter :is_admin?
+  before_action :is_admin?
 
   protected
   def is_admin?

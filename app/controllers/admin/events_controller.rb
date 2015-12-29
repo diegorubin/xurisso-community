@@ -1,6 +1,6 @@
 class Admin::EventsController < AdminController
-  before_filter :get_event, :only => [:show, :edit, :update, :destroy]
-  before_filter :get_categories, :only => [:edit, :update, :new, :create]
+  before_action :get_event, :only => [:show, :edit, :update, :destroy]
+  before_action :get_categories, :only => [:edit, :update, :new, :create]
 
   def index
     @events = Event.page(params.fetch(:page,1))

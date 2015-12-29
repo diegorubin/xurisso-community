@@ -23,3 +23,6 @@
 # configs
 config/database.yml
 
+# assets
+public/assets
+

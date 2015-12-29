@@ -15,9 +15,21 @@
 //= require jquery-ui
 //= require bootstrap-alert
 //= require bootstrap-transition
+//= require jquery.maskedinput-1.4.1
 //
+//= require admin
+//= require webcam
+//
+//= require admin/surveys
+//= require albums/index
+//= require avatars/edit
 //= require dashboard/index
 //= require events/index
+//= require messages/index
+//= require messages/new
+//= require passwords/edit
+//= require photos/index
+//= require users/edit
 //
 
 var method = "GET";

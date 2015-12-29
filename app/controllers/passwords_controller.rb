@@ -1,6 +1,6 @@
 class PasswordsController < ApplicationController
 
-  before_filter :check_if_is_user, :only => [:edit, :update]
+  before_action :check_if_is_user, :only => [:edit, :update]
 
   def edit
   end

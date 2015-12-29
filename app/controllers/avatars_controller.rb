@@ -1,5 +1,6 @@
 class AvatarsController < ApplicationController
-  before_filter :check_if_is_user, :only => [:edit, :update]
+  skip_before_action :verify_authenticity_token, only: [:create, :update]
+  before_action :check_if_is_user, :only => [:edit, :update]
 
   def create
     @user = current_user

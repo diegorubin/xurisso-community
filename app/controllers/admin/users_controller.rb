@@ -1,5 +1,5 @@
 class Admin::UsersController < AdminController
-  before_filter :get_user, :only => [:show, :edit, :update, :destroy]
+  before_action :get_user, :only => [:show, :edit, :update, :destroy]
 
   def index
     @users = User.page(params.fetch(:page,1))

@@ -38,4 +38,9 @@ module ApplicationHelper
             gsub(/\z/,'</p>'))
   end
 
+  def show_message_if_error(object, field)
+    message = object.errors.messages[field]
+    content_tag :span, message, {class: 'help-inline'} unless message.blank?
+  end
+
 end

@@ -1,14 +1,12 @@
 class UsersController < ApplicationController
-  before_filter :get_user, :only => [:show]
-  before_filter :check_if_is_user, :only => [:edit, :update]
+  before_action :get_user, :only => [:show]
+  before_action :check_if_is_user, :only => [:edit, :update]
 
-  # Exibe todos os membros cadastrados
   def index 
     @users = User.except_user(current_user).
                   order("name ASC, login ASC")
   end
 
-  # Exibe o perfil de um membro
   def show
   end
 
@@ -16,7 +14,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    if @user.update_attributes(params[:user])
+    if @user.update(user_params)
 
       if params[:xhr]
         render :json => @user
@@ -37,7 +35,6 @@ class UsersController < ApplicationController
     end
   end
 
-  # remove conta do usuario
   def destroy
     user = current_user
     user.removed = true
@@ -61,6 +58,11 @@ class UsersController < ApplicationController
   private
   def get_user
     @user = User.find_by_login(params[:id])
+  end
+
+  def user_params
+    params.require(:user)
+      .permit(:name, :email, :birthday_str, :can_display_birthday)
   end
 
 end
