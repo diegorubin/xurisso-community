@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
     if params.fetch('xhr', false)
       false
     else
-      params['controller'] =~ /devise/ ? 'login' : 'application'
+      params['controller'] =~ /(devise|registration)/ ? 'login' : 'application'
     end
   end
 
