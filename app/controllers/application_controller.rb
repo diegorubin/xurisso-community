@@ -23,5 +23,21 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def resource_class
+    controller_name.classify.constantize
+  end
+
+  def set_object_variable(value)
+    instance_variable_set("@#{resource_name}", value)
+  end
+
+  def get_object_variable
+    instance_variable_get("@#{resource_name}")
+  end
+
+  def resource_name
+    controller_name.singularize
+  end
+
 end
 

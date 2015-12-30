@@ -1,0 +1,6 @@
+pt-BR:
+  form_response:
+    messages:
+      success: Informações salvas com sucesso!
+      failed: Não foi possível salvar as informações!
+

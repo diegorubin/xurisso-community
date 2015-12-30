@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  include FormResponse
+
   before_action :get_user, only: [:show]
   before_action :get_current_user, only: [:edit, :update]
 
@@ -11,31 +13,6 @@ class UsersController < ApplicationController
   end
 
   def edit
-  end
-
-  def update
-    if @user.update(user_params)
-
-      if params[:xhr]
-        render :json => {resource: @user, message: 'certo'}
-      else
-        flash[:notice] = "Informações atualizadas com sucesso."
-        redirect_to :action => :show, :id => @user.login
-      end
-
-    else
-
-      if params[:xhr]
-        render status: 422,
-        json: {
-          resource: @user, errors: @user.errors, message: 'errado'
-        }
-      else
-        flash[:notice] = "Não foi possível atualizar os dados."
-        render :action => :edit
-      end
-
-    end
   end
 
   def destroy
