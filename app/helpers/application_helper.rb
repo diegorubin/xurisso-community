@@ -40,7 +40,8 @@ module ApplicationHelper
 
   def show_message_if_error(object, field)
     message = object.errors.messages[field].join(', ')
-    content_tag :span, message, {class: 'help-inline'}
+    content_tag :span, message, 
+      {class: 'error-description help-inline', data:{'field-error' => field}}
   end
 
 end

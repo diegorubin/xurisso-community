@@ -18,6 +18,8 @@
 //= require jquery.maskedinput-1.4.1
 //
 //= require admin
+//= require form
+//= require rest_client
 //= require webcam
 //
 //= require wysihtml5/wysihtml5-0.3.0.min
