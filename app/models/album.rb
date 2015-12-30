@@ -10,7 +10,7 @@ class Album < ApplicationRecord
     if photos.count > 0
       photos.first.thumb.url
     else
-      "/images/fallback/thumb_image.png"
+      "/assets/fallback/thumb_image.png"
     end
   end
 

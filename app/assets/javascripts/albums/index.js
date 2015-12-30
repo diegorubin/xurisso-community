@@ -1,10 +1,10 @@
 $(document).ready(function() {
 
-  $("body li.album").on("click", function(e) {
+  $('#page-content').on("click", 'li.album', function(e) {
     window.location.hash =  $(this).find("a").first().attr("href");
   });
 
-  $("body a.remove-album").on('click', function(event) {
+  $('#page-content').on('click', 'a.remove-album', function(event) {
     event.stopPropagation();
     event.preventDefault();
 
@@ -22,14 +22,14 @@ $(document).ready(function() {
 
   });
 
-  $("body a.edit-album").on('click', function(event) {
+  $('#page-content').on('click', 'a.edit-album', function(event) {
     event.stopPropagation();
     event.preventDefault();
 
     form.show_edit_dialog($(this).attr("href"));
   });
 
-  $("body #album-new").on('click', function(e) {
+  $('#page-content').on('click', '#album-new', function(e) {
     e.preventDefault();
     form.show_dialog($(this).attr("href"));
   });
@@ -152,7 +152,7 @@ function AlbumIndex() {
     };
 
     $.ajax({  
-      type: "PUT",
+      type: "PATCH",
       url: self.edit_form.attr("action"),
       data: data,  
       success: function(data) {  

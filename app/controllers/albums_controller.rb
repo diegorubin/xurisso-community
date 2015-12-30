@@ -18,7 +18,7 @@ class AlbumsController < ApplicationController
   end
 
   def create
-    @album = Album.new(params[:album])
+    @album = Album.new(album_params)
     @album.user = current_user
 
     if @album.save
@@ -43,7 +43,7 @@ class AlbumsController < ApplicationController
   end
 
   def update
-    if @album.update_attributes(params[:album])
+    if @album.update(album_params)
       if params[:xhr]
         render :json => {:album => @album, :path => user_album_path(current_user.login, @album) }
       else
@@ -105,4 +105,9 @@ class AlbumsController < ApplicationController
     @album = @user.albums.find(params[:id])
   end
 
+  def album_params
+    params.require(:album).permit(:title, :description, :album_id)
+  end
+
 end
+

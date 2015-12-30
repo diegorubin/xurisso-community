@@ -18,7 +18,7 @@ class PhotosController < ApplicationController
   end
 
   def create
-    @photo = Photo.new(params[:photo])
+    @photo = Photo.new(photo_params)
     @photo.user = current_user
     @photo.album = @album
 
@@ -43,7 +43,7 @@ class PhotosController < ApplicationController
   end
 
   def update
-    if @photo.update_attributes(params[:photo])
+    if @photo.update(photo_params)
       if params[:xhr]
         render :json => {:photo => @photo, :path => user_album_photo_path(current_user.login, @album, @photo) }
       else
@@ -110,4 +110,9 @@ class PhotosController < ApplicationController
   def get_photo
     @photo = @album.photos.find(params[:id])
   end
+
+  def photo_params
+    params.require(:photo).permit(:title, :description, :image)
+  end
+
 end

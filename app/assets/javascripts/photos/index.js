@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-  $("body a.remove-photo").on('click', function(event) {
+  $('#page-content').on('click', 'a.remove-photo', function(event) {
     event.stopPropagation();
     event.preventDefault();
 
@@ -20,14 +20,14 @@ $(document).ready(function() {
 
   });
 
-  $("body a.edit-photo").on('click', function(event) {
+  $('#page-content').on('click', 'a.edit-photo', function(event) {
     event.stopPropagation();
     event.preventDefault();
 
     form.show_edit_dialog($(this).attr("href"));
   });
 
-  $("body #photo-new").on('click', function(e) {
+  $('#page-content').on('click', "#photo-new", function(e) {
     e.preventDefault();
     form.show_dialog($(this).attr("href"));
   });
@@ -169,7 +169,7 @@ function PhotoIndex() {
 
     $("#notice-msg").slideDown('fast');
     $.ajax({  
-      type: "PUT",
+      type: "PATCH",
       url: _this.edit_form.attr("action"),
       data: data,  
       contentType: false,
