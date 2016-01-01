@@ -25,7 +25,8 @@
               %li{:class => site_active("users", "index")}
                 = link_to "Membros", users_path, :class => "menu-item"
               %li.pull-right
-                = link_to 'Sair', destroy_user_session_path, :class => "normal-link"
+                = link_to 'Sair', destroy_user_session_path, 
+                  class: "normal-link", method: 'delete'
 
     .container
       .content
