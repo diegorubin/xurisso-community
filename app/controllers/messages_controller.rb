@@ -14,20 +14,28 @@ class MessagesController < ApplicationController
   end
 
   def create
-    @message = Message.new(params[:message])
+    @message = Message.new(message_params)
     @message.to = @user
     @message.from = current_user
 
     if @message.save
       if params[:xhr]
-        render :json => @message
+        render json: {
+          resource: @message, 
+          message: I18n.t('form_response.messages.success')
+        }
       else
         flash[:notice] = "Mensagem enviada com sucesso."
         redirect_to :controller => :users, :action => :show, :id => @user.login
       end
     else
       if params[:xhr]
-        render :json => @message.errors, :status => 500
+        render status: 422,
+        json: {
+          resource: @message, 
+          errors: @message.errors, 
+          message: I18n.t('form_response.messages.failed')
+        }
       else
         flash[:notice] = "Não foi possível enviar a mensagem."
         render :action => :new
@@ -68,4 +76,9 @@ class MessagesController < ApplicationController
   def get_user
     @user = User.find_by_login_or_id(params[:user_id], params[:user_id]).first
   end
+
+  def message_params
+    params.require(:message).permit(:about, :body)
+  end
+
 end

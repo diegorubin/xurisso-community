@@ -19,21 +19,27 @@ function upload_complete(msg) {
   }
 }
 
-function AvatarEditForm() {
-  var self = this;
-  self.form = $('.user_edit');
+var AvatarEditForm = function() {
+  var _this = this;
+};
 
-  self.init = function() {
-    webcam.set_swf_url('/webcam.swf');
-    webcam.set_api_url(path);
-    webcam.set_quality(90);
-    webcam.set_shutter_sound(true, '/shutter.mp3');
-    webcam.set_hook('onLoad', 'onload_complete');
-    webcam.set_hook('onComplete', 'upload_complete');
-    $('#webcam').html(webcam.get_html(300, 225));
-  }
+AvatarEditForm.prototype = new Form();
 
-  self.form.find("input.btn-primary").click(function(event) {
+AvatarEditForm.prototype.constructor = AvatarEditForm;
+
+AvatarEditForm.init = function() {
+  var _this = this;
+  _this.form = $('.user_edit');
+
+  webcam.set_swf_url('/webcam.swf');
+  webcam.set_api_url(path);
+  webcam.set_quality(90);
+  webcam.set_shutter_sound(true, '/shutter.mp3');
+  webcam.set_hook('onLoad', 'onload_complete');
+  webcam.set_hook('onComplete', 'upload_complete');
+  $('#webcam').html(webcam.get_html(300, 225));
+
+  _this.form.find("input.btn-primary").click(function(event) {
     event.preventDefault();
     var csrf_param = $('meta[name=csrf-param]').attr('content');
     var csrf_token = $('meta[name=csrf-token]').attr('content');
@@ -48,7 +54,7 @@ function AvatarEditForm() {
 
     $.ajax({  
       type: "PUT",  
-      url: self.form.attr('action'),
+      url: _this.form.attr('action'),
       data: data,  
       contentType: false,
       processData: false,

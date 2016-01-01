@@ -3,6 +3,13 @@ pt-BR:
     errors:
       models:
 
+        message:
+          attributes:
+            about:
+              blank: 'O campo "Asssunto" não pode ficar em branco'
+            body:
+              blank: 'O campo "Texto" não pode ficar em branco'
+
         user:
           attributes:
             email:

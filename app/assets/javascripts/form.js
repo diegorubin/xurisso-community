@@ -32,7 +32,8 @@ Form.prototype.submit = function() {
   var _this = this;
 
   var action = _this.form.attr('action');
-  var method = _this.form.find('input[name="_method"]').val();
+  var method = _this.form.find('input[name="_method"]').val() || 
+    _this.form.attr('method') || 'post';
 
   var data = _this.loadAttributes();
   data['xhr'] = true;
@@ -51,8 +52,9 @@ Form.prototype.submit = function() {
       display_message(data.message, 'error');
       if(_this.error) _this.error(data);
       _this.showErrors(data.errors);
-      _this.enableSubmit();
     }
+    setTimeout(function(){ _this.enableSubmit(); }, 500);
+    
   }
 
   client.call(method, data);

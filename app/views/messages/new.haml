@@ -11,11 +11,11 @@
 
     = f.label :about
     = f.text_field :about
-    %span#error_title.help-inline= @message.errors.get(:about)
+    = show_message_if_error(@message, :about)
 
     = f.label :body
     = f.text_area :body
-    %span#error_title.help-inline= @message.errors.get(:body)
+    = show_message_if_error(@message, :body)
 
     .clearfix
       = f.submit "Enviar", :class => "btn btn-primary"

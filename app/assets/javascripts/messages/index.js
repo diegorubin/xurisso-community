@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  $("body a.remove-message").on('click', function(event) {
+  $('#page-content').on('click', 'a.remove-message', function(event) {
     event.stopPropagation();
     event.preventDefault();
 
