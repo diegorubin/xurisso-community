@@ -1,3 +1,10 @@
+/*
+ *= require bootstrap.min
+ *= require shared
+ *= require jquery-ui
+ *= require_self
+ */
+
 .container-admin {
   margin: 0px 20px;
 }

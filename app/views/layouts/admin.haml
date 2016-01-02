@@ -6,7 +6,7 @@
     /[if lt IE 9]
       = javascript_include_tag 'http://html5shim.googlecode.com/svn/trunk/html5.js'
 
-    = include_stylesheets :admin, :media => 'all'
+    = stylesheet_link_tag :admin, :media => 'all'
 
   %body
     .navbar
@@ -48,7 +48,7 @@
         %p
           Desenvolvido por #{link_to "Diego Rubin", "http://diegorubin.com"}
 
-  = include_javascripts :admin
+  = javascript_include_tag :admin
         
   = yield :javascript 
 
