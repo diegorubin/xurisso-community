@@ -1,0 +1,10 @@
+- content_for :title, "Nova Categoria de Evento"
+
+%h1
+  Nova Categoria de Evento
+
+.well
+  = link_to "Categoria de Eventos", admin_event_categories_path, :class => "btn"
+
+= render :partial => "form"
+

@@ -1,7 +1,7 @@
-- content_for :title, "Lista de Eventos"
+- content_for :title, "Lista de Categorias de Evento"
 .page_header
   %h1
-    Lista de Eventos
+    Lista de Categorias de Evento
 
 .well
   = link_to "Adicionar Evento", new_admin_event_path, {:class => "btn btn-primary"}
@@ -12,24 +12,20 @@
     %th
       Título
     %th
-      Início
-    %th
-      Fim
+      Ícone
     %th
       Criado em
-    %th
-      Publicado?
-    %th
-      &nbsp;
     %th
       &nbsp;
     %th
       &nbsp;
       
-  - @events.each do |e|
+  - @event_categories.each do |e|
     %tr
       %td
         = e.title
+      %td
+        = e.icon_name
       %td
         = l e.start_at, :format => :long, :locale => "pt-BR" 
       %td
@@ -39,11 +35,9 @@
       %td
         = e.published ? "sim" : "não"
       %td
-        = link_to "visualizar", admin_event_path(e), :class => "blank"
+        = link_to "editar", edit_admin_event_category_path(e)
       %td
-        = link_to "editar", edit_admin_event_path(e)
-      %td
-        = link_to "remover", admin_event_path(e), :method => :delete, :confirm => "você tem certeza?"
+        = link_to "remover", admin_event_category_path(e), :method => :delete, :confirm => "você tem certeza?"
 
-= paginate @events
+= paginate @event_categories
 

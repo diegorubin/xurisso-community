@@ -1,0 +1,15 @@
+= form_for [:admin, @event_category] do |f|
+
+  .row-fluid
+    .span8
+      = f.label :title
+      = f.text_field :title
+      = show_message_if_error(@event_category, :title)
+
+      = f.label :icon_name
+      = f.text_area :icon_name
+      = show_message_if_error(@event_category, :icon_name)
+
+      .clearfix
+        = f.submit "Salvar", :class => "btn btn-primary"
+
