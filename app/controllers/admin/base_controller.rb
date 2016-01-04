@@ -60,10 +60,10 @@ class Admin::BaseController < AdminController
   def destroy
     if get_object_variable.destroy
       flash[:notice] = 
-        :notice.t(:scope => [instance_variable_name, :admin, :destroy]) 
+        I18n.t(:notice, :scope => [instance_variable_name, :admin, :destroy]) 
     else
       flash[:alert] = 
-        :alert.t(:scope => [instance_variable_name, :admin, :destroy]) 
+        I18n.t(:alert, :scope => [instance_variable_name, :admin, :destroy]) 
     end
     redirect_to :action => :index
   end
@@ -110,7 +110,7 @@ class Admin::BaseController < AdminController
     respond_to do |format|
       format.html do
         redirect_to action: :index
-        flash[:notice] = :notice.t(:scope => [instance_variable_name, :admin, act])
+        flash[:notice] = I18n.t(:notice, :scope => [instance_variable_name, :admin, act])
       end
 
       format.json do
@@ -124,7 +124,7 @@ class Admin::BaseController < AdminController
       format.html do
         render :action => action
         flash[:alert] = 
-          :alert.t(:scope => [instance_variable_name, :admin, alert])
+          I18n.t(:alert, :scope => [instance_variable_name, :admin, alert])
       end
 
       format.json do

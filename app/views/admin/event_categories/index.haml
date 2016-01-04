@@ -27,13 +27,7 @@
       %td
         = e.icon_name
       %td
-        = l e.start_at, :format => :long, :locale => "pt-BR" 
-      %td
-        = l e.end_at, :format => :long, :locale => "pt-BR" 
-      %td
         = l e.created_at, :format => :long, :locale => "pt-BR" 
-      %td
-        = e.published ? "sim" : "não"
       %td
         = link_to "editar", edit_admin_event_category_path(e)
       %td
