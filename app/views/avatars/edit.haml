@@ -20,12 +20,14 @@
     .clearfix
       = f.submit "Enviar", :class => "btn btn-primary"
   
-  <div id='webcam'></div>
-  
-  %input{:type => "button", 
-         :value => "Tire uma foto", 
-         :class => "btn btn-primary",
-         :onclick => "webcam.snap();"}
+  #webcam-wrap
+    #webcam
+    
+    %input{:type => "button", 
+           :value => "Tire uma foto", 
+           :id => 'take-photo',
+           :disabled => true,
+           :class => "btn btn-primary"}
   
 = render :partial => "shared/header"
 

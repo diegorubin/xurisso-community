@@ -39,7 +39,7 @@ function EventCalendar() {
       client.success = function(data, textStatus, xhr) {
         $('li.event-participate').html(self.exit_button(link.attr('rel')));
       };
-      client.call('PUT', {join: true});
+      client.call('PATCH', {join: true});
     });
 
     $('#page-content').on('click', '.exit-event', function(event) {
@@ -50,7 +50,7 @@ function EventCalendar() {
       client.success = function(data, textStatus, xhr) {
         $('li.event-participate').html(self.join_button(link.attr('rel')));
       };
-      client.call('PUT', {exit: true});
+      client.call('PATCH', {exit: true});
     });
 
     self.loadMonth();
