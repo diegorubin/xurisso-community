@@ -10,33 +10,20 @@
 
   %body
 
-    .container-login
-      .content
+    .login-container
 
-        .row-fluid
-          .span8
-            - if alert
-              %div{:class => "alert alert-error fade in"}
-                %a{:class => "close",
-                   "data-dismiss" => "alert",
-                   :href => "#"}
-                  &times;
-                = alert
+      .form-signin
+        - if alert
+          %div{:class => "alert alert-error fade in"}
+            = alert
 
-            - if notice 
-              %div{:class => "alert success fade in"}
-                %button{:class => "close",
-                        "data-dismiss" => "alert"}
-                  x
-                = notice
+        - if notice 
+          %div{:class => "alert success fade in"}
+            = notice
 
-          .span4
-            #login-form.well
-              = yield
+        = yield
 
       %footer
-        %p
-          Desenvolvido por #{link_to "Diego Rubin", "http://diegorubin.com"}
 
   = yield :javascript 
 
