@@ -44,7 +44,7 @@ Form.prototype.submit = function() {
     display_message(data.message, 'success');
     if(_this.success) _this.success(data, textStatus, xhr);
     _this.enableSubmit();
-  }
+  };
 
   client.error = function(data) {
     data = data.responseJSON || {message: "Erro desconhecido", errors: {}};
@@ -55,7 +55,7 @@ Form.prototype.submit = function() {
     }
     setTimeout(function(){ _this.enableSubmit(); }, 500);
     
-  }
+  };
 
   client.call(method, data);
   

@@ -1,9 +1,5 @@
-/*
- * Show event
- */
-
 $(document).ready(function() {
-  $("body .show-event").on('click', function(event) {
+  $('#page-content').on('click', ".show-event", function(event) {
     event.preventDefault();
     form.show_event($(this).attr('rel'));
   });
@@ -35,34 +31,26 @@ function EventCalendar() {
       event.preventDefault();
     });
 
-    $('body .join-event').on('click', function(event) {
+    $('#page-content').on('click', '.join-event', function(event) {
       event.preventDefault();
       link = $(this);
-      $.ajax({
-        type: "PUT",
-        dataType: "json",
-        data: {'join':true},
-        url: '/events/' + link.attr('rel') + ".json",
-        success: function(data) {
-          $('li.event-participate').html(self.exit_button(link.attr('rel')));
-        }
-      });
 
+      var client = new RestClient('/events/' + link.attr('rel') + '.json');
+      client.success = function(data, textStatus, xhr) {
+        $('li.event-participate').html(self.exit_button(link.attr('rel')));
+      };
+      client.call('PUT', {join: true});
     });
 
-    $('body .exit-event').on('click', function(event) {
+    $('#page-content').on('click', '.exit-event', function(event) {
       event.preventDefault();
       link = $(this);
-      $.ajax({
-        type: "PUT",
-        dataType: "json",
-        data: {'exit':true},
-        url: '/events/' + link.attr('rel') + ".json",
-        success: function(data) {
-          $('li.event-participate').html(self.join_button(link.attr('rel')));
-        }
-      });
 
+      var client = new RestClient('/events/' + link.attr('rel') + '.json');
+      client.success = function(data, textStatus, xhr) {
+        $('li.event-participate').html(self.join_button(link.attr('rel')));
+      };
+      client.call('PUT', {exit: true});
     });
 
     self.loadMonth();
@@ -197,29 +185,27 @@ function EventCalendar() {
     $('#see-more').addClass('hide');
 
     if(event_id) {
-      $.ajax({
-        type: "GET",
-        dataType: "json",
-        url: '/events/' + event_id + '.json',
-        success: function(data) {
-          var button;
-          if(data.current_user_participating)
-            button = self.exit_button(data.id);
-          else
-            button = self.join_button(data.id);
-          
-          $('li.event-participate').html(button);
 
-          for(var i = 0; i < data.user_thumbs.length; i++) {
-            self.put_thumb(data.user_thumbs[i]);
-          }
+      var client = new RestClient('/events/' + event_id + '.json');
+      client.success = function(data, textStatus, xhr) {
+        var button;
+        if(data.current_user_participating)
+          button = self.exit_button(data.id);
+        else
+          button = self.join_button(data.id);
+        
+        $('li.event-participate').html(button);
 
-          if(data.body != '') {
-            $('#link-see-more').attr('href', '/events/' + data.id);
-            $('#see-more').removeClass('hide');
-          }
+        for(var i = 0; i < data.user_thumbs.length; i++) {
+          self.put_thumb(data.user_thumbs[i]);
         }
-      });
+
+        if(data.body != '') {
+          $('#link-see-more').attr('href', '/events/' + data.id);
+          $('#see-more').removeClass('hide');
+        }
+      };
+      client.call('GET',{});
     }
   };
 
