@@ -16,6 +16,7 @@ gem 'rmagick'
 gem 'turbolinks'
 gem 'unicorn'
 gem 'delayed_job_active_record'
+gem 'daemons'
 
 #file upload
 gem 'carrierwave'
