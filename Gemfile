@@ -14,6 +14,7 @@ gem 'memcache-client'
 gem 'redis'
 gem 'rmagick'
 gem 'turbolinks'
+gem 'unicorn'
 
 #file upload
 gem 'carrierwave'
@@ -28,8 +29,13 @@ gem 'devise', :git => 'https://github.com/plataformatec/devise.git'
 gem 'haml'
 gem 'cells'
 
+gem 'newrelic_rpm'
+
 group :development, :test do
+  gem 'capistrano'
   gem 'capistrano-rails'
+  gem 'capistrano-rvm'
+  gem 'capistrano3-unicorn'
   gem 'byebug'
   gem 'guard-rails', require: false
   gem 'guard-rspec', require: false
