@@ -29,7 +29,7 @@ gem 'devise', :git => 'https://github.com/plataformatec/devise.git'
 gem 'haml'
 gem 'cells'
 
-gem 'newrelic_rpm'
+#gem 'newrelic_rpm'
 
 group :development, :test do
   gem 'capistrano'

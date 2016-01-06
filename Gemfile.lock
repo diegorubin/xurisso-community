@@ -196,7 +196,6 @@ GEM
       net-ssh (>= 2.6.5)
     net-ssh (3.0.1)
     netrc (0.11.0)
-    newrelic_rpm (3.14.1.311)
     nokogiri (1.6.7.1)
       mini_portile2 (~> 2.0.0.rc2)
     notiffany (0.0.8)
@@ -352,7 +351,6 @@ DEPENDENCIES
   kaminari
   memcache-client
   mysql2
-  newrelic_rpm
   puma
   rails (>= 5.0.0.beta1, < 5.1)
   rails-controller-testing
