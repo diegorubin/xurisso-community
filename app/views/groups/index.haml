@@ -1,0 +1,22 @@
+- content_for(:menu) do
+  = render :partial => "groups/menu-index"
+
+- content_for(:page) do
+  - content_for :title, "Grupos"
+  
+  %h1
+    Grupos
+
+  %ul#groups
+    - @groups.each do |group|
+      %li.group.well
+        %p
+          %a{:href => group_path(group.id)}
+            = image_tag(group.cover.example.url)
+        %p
+          %a{:href => group_path(group.id)}
+            = group.title
+
+
+= render :partial => "shared/header"
+

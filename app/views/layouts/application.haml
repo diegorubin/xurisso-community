@@ -24,6 +24,8 @@
                 = link_to "Mensagens", user_messages_path(current_user.login), :class => "menu-item"
               %li{:class => site_active("users", "index")}
                 = link_to "Membros", users_path, :class => "menu-item"
+              %li{:class => site_active("groups", "index")}
+                = link_to "Grupos", groups_path, :class => "menu-item"
               %li.pull-right
                 = link_to 'Sair', destroy_user_session_path, 
                   class: "normal-link", method: 'delete'

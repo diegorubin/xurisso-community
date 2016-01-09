@@ -21,13 +21,12 @@ Rails.application.routes.draw do
   resources :avatars
   resources :comments, :only => [:new, :create, :update, :destroy]
   resources :events
+  resources :groups
   resources :passwords
   resources :survey_answers, :only => [:create]
   resources :wall_messages, :only => [:index, :new, :create]
 
   root :to => "dashboard#index"
 
-  # Serve websocket cable requests in-process
-  # mount ActionCable.server => '/cable'
 end
 

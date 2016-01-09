@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160106161447) do
+ActiveRecord::Schema.define(version: 20160109181225) do
 
   create_table "albums", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title"
@@ -95,6 +95,17 @@ ActiveRecord::Schema.define(version: 20160106161447) do
     t.integer "user_id"
   end
 
+  create_table "groups", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "title"
+    t.text     "description",    limit: 65535
+    t.boolean  "only_by_invite"
+    t.integer  "owner_id"
+    t.boolean  "is_private"
+    t.string   "cover"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
   create_table "messages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "about"
     t.text     "body",            limit: 65535
@@ -106,6 +117,16 @@ ActiveRecord::Schema.define(version: 20160106161447) do
     t.boolean  "removed_by_to",                 default: false
     t.index ["from_id"], name: "index_messages_on_from_id", using: :btree
     t.index ["to_id"], name: "index_messages_on_to_id", using: :btree
+  end
+
+  create_table "participations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id"
+    t.integer  "group_id"
+    t.integer  "invited_by"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_participations_on_group_id", using: :btree
+    t.index ["user_id"], name: "index_participations_on_user_id", using: :btree
   end
 
   create_table "photos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -203,4 +224,6 @@ ActiveRecord::Schema.define(version: 20160106161447) do
     t.index ["user_id"], name: "index_wall_messages_on_user_id", using: :btree
   end
 
+  add_foreign_key "participations", "groups"
+  add_foreign_key "participations", "users"
 end
