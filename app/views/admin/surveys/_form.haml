@@ -23,7 +23,7 @@
 - content_for :javascript do
   :javascript
     function newSurveyOption() {
-      var basic = "#{escape_javascript(render :partial => "admin/survey_options/form", :locals => {:o => ActionView::Helpers::FormBuilder.new('__owner__[survey_options_attributes][__index__]',SurveyOption.new, self, {}, proc {})})}";
+      var basic = "#{escape_javascript(render :partial => "admin/survey_options/form", :locals => {:o => ActionView::Helpers::FormBuilder.new('__owner__[survey_options_attributes][__index__]',SurveyOption.new, self, {})})}";
       var index = new Date() * 1 + parseInt(Math.random()*100000);
       while (basic.indexOf("__owner__") != -1) basic = basic.replace("__owner__", "survey");
       while (basic.indexOf("__index__") != -1) basic = basic.replace("__index__", index);

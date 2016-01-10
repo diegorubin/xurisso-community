@@ -17,7 +17,6 @@
 //= require bootstrap-transition
 //= require jquery.maskedinput-1.4.1
 //
-//= require admin
 //= require form
 //= require rest_client
 //= require webcam
@@ -25,7 +24,6 @@
 //= require wysihtml5/wysihtml5-0.3.0.min
 //= require wysihtml5/advanced.js
 //
-//= require admin/surveys
 //= require albums/index
 //= require avatars/edit
 //= require dashboard/index
