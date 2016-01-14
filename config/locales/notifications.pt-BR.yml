@@ -1,0 +1,6 @@
+pt-BR:
+  notifications:
+
+    messages:
+      new_message: "%s te enviou uma nova mensagem!"
+

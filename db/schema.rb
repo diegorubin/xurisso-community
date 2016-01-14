@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160109181225) do
+ActiveRecord::Schema.define(version: 20160114122800) do
 
   create_table "albums", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title"
@@ -119,6 +119,25 @@ ActiveRecord::Schema.define(version: 20160109181225) do
     t.index ["to_id"], name: "index_messages_on_to_id", using: :btree
   end
 
+  create_table "notification_reads", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id"
+    t.integer  "notification_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["notification_id"], name: "index_notification_reads_on_notification_id", using: :btree
+    t.index ["user_id"], name: "index_notification_reads_on_user_id", using: :btree
+  end
+
+  create_table "notifications", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "from_id"
+    t.string   "from_type"
+    t.integer  "to_id"
+    t.string   "to_type"
+    t.text     "description", limit: 65535
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
   create_table "participations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
     t.integer  "group_id"
@@ -224,6 +243,8 @@ ActiveRecord::Schema.define(version: 20160109181225) do
     t.index ["user_id"], name: "index_wall_messages_on_user_id", using: :btree
   end
 
+  add_foreign_key "notification_reads", "notifications"
+  add_foreign_key "notification_reads", "users"
   add_foreign_key "participations", "groups"
   add_foreign_key "participations", "users"
 end

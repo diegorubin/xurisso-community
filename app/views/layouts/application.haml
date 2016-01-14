@@ -18,8 +18,6 @@
                 = link_to "Home", root_path, :class => "menu-item"
               %li{:class => site_active("events", "index")}
                 = link_to "Calendário", events_path, :class => "menu-item"
-              %li{:class => site_active("users", "edit")}
-                = link_to "Meu Perfil", edit_user_path(current_user), :class => "menu-item"
               %li{:class => site_active("messages", "index")}
                 = link_to "Mensagens", user_messages_path(current_user.login), :class => "menu-item"
               %li{:class => site_active("users", "index")}
@@ -27,8 +25,23 @@
               %li{:class => site_active("groups", "index")}
                 = link_to "Grupos", groups_path, :class => "menu-item"
               %li.pull-right
-                = link_to 'Sair', destroy_user_session_path, 
-                  class: "normal-link", method: 'delete'
+            %ul.nav.navbar-nav.navbar-right
+              %li.dropdown
+                %a.normal-link.dropdown-toggle{href: "#", 'data-toggle' => :dropdown}
+                  Usuário
+                  %b.caret
+                %ul.dropdown-menu
+                  %li
+                    = link_to "Meu Perfil", edit_user_path(current_user), :class => "dropdown-item"
+                  %li
+                    = link_to notifications_path, :class => "dropdown-item" do
+                      Notificações
+
+                      %span.badge
+                        34
+                  %li.divider
+                    %li= link_to 'Sair', destroy_user_session_path, 
+                      class: "normal-link", method: 'delete'
 
     .container
       .content

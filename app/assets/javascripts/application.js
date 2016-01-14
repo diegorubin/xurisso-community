@@ -13,7 +13,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
+//= require bootstrap.min
 //= require bootstrap-alert
+//= require bootstrap-dropdown
 //= require bootstrap-transition
 //= require jquery.maskedinput-1.4.1
 //
@@ -49,6 +51,7 @@ $(document).ready(function() {
 
     if(link.attr("a-method")) method = link.attr("a-method");
     if(link.hasClass("menu-item")) activate_link(link);
+    if(link.hasClass("dropdown-item")) dropdown_item_clicked(link);
 
     window.location.hash = link.attr("href");
 
@@ -102,8 +105,14 @@ function display_message(message, st) {
 }
 
 function activate_link(link) {
-  link.closest("ul.nav").children().removeClass("active");
+  link.closest(".navbar-inner").find('.active').removeClass("active");
   link.parent().addClass("active");
+}
+
+function dropdown_item_clicked(link) {
+  link.closest(".navbar-inner").find('.active').removeClass("active");
+  link.parent().addClass("active");
+  link.closest('.dropdown').click();
 }
 
 function init_form(page) {

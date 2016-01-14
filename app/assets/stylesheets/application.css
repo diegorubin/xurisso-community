@@ -3,6 +3,10 @@
  *= require_self
  */
 
+.navbar-right {
+  float: right !important;
+}
+
 footer {
   text-align: center;
 }
