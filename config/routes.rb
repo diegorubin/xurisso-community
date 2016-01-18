@@ -22,10 +22,13 @@ Rails.application.routes.draw do
   resources :comments, only: [:new, :create, :update, :destroy]
   resources :events
   resources :groups
-  resources :notifications, only: [:index]
+  resources :notification_reads, only: [:create]
   resources :passwords
   resources :survey_answers, only: [:create]
   resources :wall_messages, only: [:index, :new, :create]
+
+  get 'notifications/list', to: 'notifications#list', as: 'notifications_list'
+  get 'notifications/not_read', to: 'notifications#not_read', as: 'notifications_not_read'
 
   root :to => "dashboard#index"
 

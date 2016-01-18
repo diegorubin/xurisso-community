@@ -34,11 +34,13 @@
                   %li
                     = link_to "Meu Perfil", edit_user_path(current_user), :class => "dropdown-item"
                   %li
-                    = link_to notifications_path, :class => "dropdown-item" do
+                    %span.dropdown-no-link
                       Notificações
+                    %span.badge
+                      = notifications_count
+                  %li
+                    #notifications-container
 
-                      %span.badge
-                        34
                   %li.divider
                     %li= link_to 'Sair', destroy_user_session_path, 
                       class: "normal-link", method: 'delete'

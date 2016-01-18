@@ -17,8 +17,8 @@ class Message < ApplicationRecord
   paginates_per 10
 
   def notify
-    message = I18n.t('notifications.messages.new_message')%(to.identifier)
-    Notify.new(from,to).notify!(message)
+    message = I18n.t('notifications.messages.new_message')%(from.identifier)
+    Notify.new(self,to).notify!(message)
   end
 
 end

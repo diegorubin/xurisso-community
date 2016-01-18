@@ -102,3 +102,17 @@ a.danger {
   padding: 2px 5px 0px 15px; 
 }
 
+/* notifications */
+#notifications-container ul {
+  color: red;
+  list-style: none !important;
+  margin: 0px;
+  padding: 0px;
+}
+
+span.dropdown-no-link {
+  color: #333;
+  font-weight: bolder;
+  margin: 3px 10px;
+}
+

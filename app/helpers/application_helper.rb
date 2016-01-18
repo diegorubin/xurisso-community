@@ -44,4 +44,20 @@ module ApplicationHelper
       {class: 'error-description help-inline', data:{'field-error' => field}}
   end
 
+  def notifications_count
+    Notification.for_user(current_user).count
+  end
+
+  def notification_link(notification)
+    resource = notification.from_type.underscore
+    url = send("get_#{resource}_url", notification)
+    raw link_to(notification.description, url)
+  end
+
+  private
+  def get_message_url(notification)
+    user_message_path(notification.to.login, notification.from_id)
+  end
+
 end
+

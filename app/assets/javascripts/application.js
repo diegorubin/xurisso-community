@@ -32,6 +32,7 @@
 //= require events/index
 //= require messages/index
 //= require messages/new
+//= require notifications/index
 //= require passwords/edit
 //= require photos/index
 //= require users/edit
