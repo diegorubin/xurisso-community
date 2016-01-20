@@ -4,6 +4,8 @@ class Album < ApplicationRecord
 
   has_many :photos
 
+  validates :title, presence: true
+
   paginates_per 9
 
   def cover
@@ -23,3 +25,4 @@ class Album < ApplicationRecord
     )
   end
 end
+

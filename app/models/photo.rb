@@ -9,6 +9,9 @@ class Photo < ApplicationRecord
   has_many :approved_comments, -> {where(approved: true)},
     :as => 'commentable', :class_name => 'Comment'
 
+  validates :title, presence: true
+  validates :image, presence: true
+
   paginates_per 27
 
   def thumb

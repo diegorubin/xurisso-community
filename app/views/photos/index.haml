@@ -8,7 +8,7 @@
     Fotos do álbum #{@album.title}
 
   #album-description
-    = raw(h(@album.description).gsub("\n","<br/>"))
+    = raw(h(@album.description || '').gsub("\n","<br/>"))
 
   %ul#photos
     - @photos.each do |photo|

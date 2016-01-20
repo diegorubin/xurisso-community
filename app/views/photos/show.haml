@@ -16,7 +16,7 @@
     #{l @photo.created_at, :format => :long, :locale => "pt-BR"}
 
   #photo-description-wrapper
-    = raw @photo.description.gsub("\n", "</br>")
+    = raw (@photo.description || '').gsub("\n", "</br>")
 
 = render :partial => "shared/header"
 
