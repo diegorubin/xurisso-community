@@ -8,15 +8,12 @@ $(document).ready(function() {
     if(link.attr("a-confirm") && !confirm(link.attr("a-confirm"))) return false;
 
     $("#notice-msg").slideDown('fast');
-    $.ajax({
-      type: "DELETE",
-      url: link.attr("href"),
-      data: {xhr:true},
-      success: function(){
-        link.closest("li").remove();
-        $("#notice-msg").slideUp('fast');
-      }
-    });
+    var client = new RestClient(link.attr("href"));
+    client.success = function() {
+      link.closest("li").remove();
+      $("#notice-msg").slideUp('fast');
+    };
+    client.call('DELETE', {xhr: true});
 
   });
 

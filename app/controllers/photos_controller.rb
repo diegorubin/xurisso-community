@@ -1,7 +1,7 @@
 class PhotosController < ApplicationController
   before_action :check_if_is_user, :only => [:edit, :update, :destroy]
   before_action :get_album
-  before_action :get_photo, :only => [:edit, :update, :destroy, :show]
+  before_action :get_photo, :only => [:edit, :update, :destroy]
 
   def index
     @photos = @album.photos.page(params.fetch(:page, 1))
@@ -61,6 +61,8 @@ class PhotosController < ApplicationController
   end
 
   def show
+    @photo = @album.photos.per(1).page(params.fetch(:page, 1)).first
+
     respond_to do |format|
       format.html { 
         if params[:partial]

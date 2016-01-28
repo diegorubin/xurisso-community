@@ -7,6 +7,9 @@
   %h1
     Foto #{@photo.title}
 
+  = link_to user_album_photo_path(current_user.login, @album, @photo) do
+    Anterior
+
   #photo-wrapper
     = image_tag @photo.image.album.url
 
@@ -17,6 +20,9 @@
 
   #photo-description-wrapper
     = raw (@photo.description || '').gsub("\n", "</br>")
+
+  = link_to user_album_photo_path(current_user.login, @album, @photo) do
+    Próximo
 
 = render :partial => "shared/header"
 

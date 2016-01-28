@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 #core
-gem 'rails', '>= 5.0.0.beta1', '< 5.1'
+gem 'rails', '>= 5.0.0.beta1.1', '< 5.1'
 gem 'mysql2'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
@@ -45,10 +45,10 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'coveralls', require: false
+  gem 'rails-controller-testing'
 end
 
 group :development do
-  gem 'rails-controller-testing'
   gem 'web-console', '~> 3.0'
   gem 'spring'
 end

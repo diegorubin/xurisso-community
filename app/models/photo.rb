@@ -9,10 +9,14 @@ class Photo < ApplicationRecord
   has_many :approved_comments, -> {where(approved: true)},
     :as => 'commentable', :class_name => 'Comment'
 
-  validates :title, presence: true
+  validates :album, presence: true
   validates :image, presence: true
 
   paginates_per 27
+
+  def display_title
+    album.title
+  end
 
   def thumb
     image.thumb

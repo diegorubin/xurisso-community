@@ -5,6 +5,7 @@ FactoryGirl.define do
     description 'uma descricao'
 
     user {create(:confirmed_user)}
+    image File.open(Rails.root.join("spec/support/fixtures/image.png"))
 
     album
 
